@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+[[ ${XDG_SESSION_TYPE:-} == wayland && -n ${WAYLAND_DISPLAY:-} && -n ${XDG_RUNTIME_DIR:-} ]]
+if [[ $WAYLAND_DISPLAY == /* ]]; then
+  [[ -S $WAYLAND_DISPLAY ]]
+else
+  [[ -S $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY ]]
+fi
+# Hyprland's instance signature is needed by collectors and focus restoration.
+[[ -n ${HYPRLAND_INSTANCE_SIGNATURE:-} ]]
+hyprctl -j version >/dev/null 2>&1

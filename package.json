@@ -1,0 +1,37 @@
+{
+  "name": "soft-launcher",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Keyboard launcher that renders a decision model's live distribution over an action catalogue",
+  "engines": { "node": ">=26 <27" },
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5173 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4173 --strictPort",
+    "check": "svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "sync:soft-if": "pnpm install --force",
+    "tauri": "tauri",
+    "desktop": "python3 scripts/services/layer_shell.py --profile debug --quiet && tauri dev --features desktop",
+    "desktop:build": "vite build && python3 scripts/services/layer_shell.py --profile release --quiet && tauri build --features desktop"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.12.4",
+    "soft-if": "file:../soft-if"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "@tauri-apps/cli": "^2.12.3",
+    "@tsconfig/svelte": "^5.0.8",
+    "@types/node": "^26.0.0",
+    "svelte": "^5.57.2",
+    "svelte-check": "^4.7.7",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.5"
+  }
+}

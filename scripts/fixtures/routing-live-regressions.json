@@ -1,0 +1,3621 @@
+{
+  "source": "routing-runtime-results.json",
+  "syntheticOnly": true,
+  "samples": [
+    {
+      "input": "Is there a transcription server on buildbox?",
+      "expected": "send_to_agent",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "send_to_agent",
+          "probabilities": {
+            "open_app": 0.03706656100064412,
+            "open_file": 0.01393326809196764,
+            "open_recent": 0.006805118274351535,
+            "web_search": 0.057516661378859066,
+            "open_url": 0.016683961653632066,
+            "calc": 0.0008156927946727835,
+            "convert": 0.0007978481450096476,
+            "copy_result": 0.001508833592381196,
+            "paste_plain": 0.006720019426882654,
+            "send_to_agent": 0.36147012406426565,
+            "summarise_clipboard": 0.022086362355626613,
+            "rename_file": 0.0009203933277226963,
+            "move_to_folder": 0.001343884648246069,
+            "kill_process": 0.0009539666812560251,
+            "toggle_wifi": 0.001388785270118966,
+            "lock_screen": 0.0009519818036762117,
+            "screenshot_region": 0.0015443858743755493,
+            "switch_workspace": 0.02643152928450353,
+            "open_project": 0.01711909830622271,
+            "run_shell": 0.01718986451527354,
+            "define_word": 0.002966779339377736,
+            "translate_clipboard": 0.00868167591865983,
+            "set_timer": 0.0010031843692674361,
+            "note_to_inbox": 0.004352258983752545,
+            "search_notes": 0.019924386433644886,
+            "media_play_pause": 0.000769852830239235,
+            "volume_up": 0.0008031684286284451,
+            "volume_down": 0.0007974099942866056,
+            "ssh_to_host": 0.2998259103397356,
+            "clef_status": 0.02433730023160083,
+            "other": 0.04328973264111845
+          },
+          "confidence": 0.3401857948664078,
+          "band": "fallback",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.028941191823521225,
+          "confidence": 0.9710588081764788,
+          "probabilities": {
+            "false": 0.9710588081764788,
+            "true": 0.028941191823521225
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.0029494091501367724,
+          "confidence": 0.9970505908498632,
+          "probabilities": {
+            "false": 0.9970505908498632,
+            "true": 0.0029494091501367724
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.01811177156568821,
+          "confidence": 0.9818882284343118,
+          "probabilities": {
+            "false": 0.9818882284343118,
+            "true": 0.01811177156568821
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.012751036563146132,
+          "confidence": 0.9872489634368539,
+          "probabilities": {
+            "false": 0.9872489634368539,
+            "true": 0.012751036563146132
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.591100623577238,
+          "confidence": 0.591100623577238,
+          "probabilities": {
+            "false": 0.408899376422762,
+            "true": 0.591100623577238
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.1010473206611627,
+          "confidence": 0.8989526793388373,
+          "probabilities": {
+            "false": 0.8989526793388373,
+            "true": 0.1010473206611627
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.36732350652802787,
+          "probabilities": {
+            "0": 0.6541146324088684,
+            "1": 0.3244472286542356,
+            "2": 0.02143813893689614
+          },
+          "confidence": 0.4490147402079582,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "fallback",
+      "args": {
+        "input": "Is there a transcription server on buildbox?"
+      }
+    },
+    {
+      "input": "transcription model",
+      "expected": "web_search",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "web_search",
+          "probabilities": {
+            "open_app": 0.09688407939471463,
+            "open_file": 0.04135809103360315,
+            "open_recent": 0.06151535233231883,
+            "web_search": 0.22771856662519233,
+            "open_url": 0.010473362614697472,
+            "calc": 0.0009280606011565256,
+            "convert": 0.0009516978225480993,
+            "copy_result": 0.025932374791775993,
+            "paste_plain": 0.0845762010191948,
+            "send_to_agent": 0.12962910564304916,
+            "summarise_clipboard": 0.09432813888653487,
+            "rename_file": 0.003555071966573231,
+            "move_to_folder": 0.0037150562293510646,
+            "kill_process": 0.002059025327176533,
+            "toggle_wifi": 0.0007271874878483032,
+            "lock_screen": 0.001395426864879665,
+            "screenshot_region": 0.006745050494895769,
+            "switch_workspace": 0.005454521503201301,
+            "open_project": 0.028488838185004844,
+            "run_shell": 0.007529735330891852,
+            "define_word": 0.01531103162773032,
+            "translate_clipboard": 0.03560880516593957,
+            "set_timer": 0.0015565805206933041,
+            "note_to_inbox": 0.009231278079802813,
+            "search_notes": 0.02421751474218577,
+            "media_play_pause": 0.0019671350470273673,
+            "volume_up": 0.0006855309310401419,
+            "volume_down": 0.000697906088509327,
+            "ssh_to_host": 0.008537819516782922,
+            "clef_status": 0.01694579940093491,
+            "other": 0.051275654724745136
+          },
+          "confidence": 0.2019758521793654,
+          "band": "fallback",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.0960875993912426,
+          "confidence": 0.9039124006087574,
+          "probabilities": {
+            "false": 0.9039124006087574,
+            "true": 0.0960875993912426
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.0032786154081339163,
+          "confidence": 0.9967213845918661,
+          "probabilities": {
+            "false": 0.9967213845918661,
+            "true": 0.0032786154081339163
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.015839045600139323,
+          "confidence": 0.9841609543998606,
+          "probabilities": {
+            "false": 0.9841609543998606,
+            "true": 0.015839045600139323
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.13126515293472543,
+          "confidence": 0.8687348470652746,
+          "probabilities": {
+            "false": 0.8687348470652746,
+            "true": 0.13126515293472543
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.05100891555860064,
+          "confidence": 0.9489910844413993,
+          "probabilities": {
+            "false": 0.9489910844413993,
+            "true": 0.05100891555860064
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.3689249014512128,
+          "confidence": 0.6310750985487872,
+          "probabilities": {
+            "false": 0.6310750985487872,
+            "true": 0.3689249014512128
+          },
+          "band": "confirm",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.23130662725611922,
+          "probabilities": {
+            "0": 0.7839627123138863,
+            "1": 0.20076794811610826,
+            "2": 0.015269339570005475
+          },
+          "confidence": 0.6530400591158212,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "confirm",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "fallback",
+      "args": {
+        "input": "transcription model"
+      }
+    },
+    {
+      "input": "set up deadlock mod manager",
+      "expected": "send_to_agent",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "send_to_agent",
+          "probabilities": {
+            "open_app": 0.11919118157695405,
+            "open_file": 0.007305266743608627,
+            "open_recent": 0.003674712446324341,
+            "web_search": 0.043086810405484045,
+            "open_url": 0.011663826025564508,
+            "calc": 0.0011702340228930074,
+            "convert": 0.001169603082526718,
+            "copy_result": 0.001824561877528028,
+            "paste_plain": 0.007191239217509378,
+            "send_to_agent": 0.7032685895435716,
+            "summarise_clipboard": 0.0031368708044088533,
+            "rename_file": 0.0011774949757157945,
+            "move_to_folder": 0.0023670237749966465,
+            "kill_process": 0.002273415700705492,
+            "toggle_wifi": 0.001219368205933964,
+            "lock_screen": 0.004872319356232828,
+            "screenshot_region": 0.002227192328237044,
+            "switch_workspace": 0.0037798644388989766,
+            "open_project": 0.008997634553213616,
+            "run_shell": 0.014163398488623292,
+            "define_word": 0.003899308182242372,
+            "translate_clipboard": 0.0016285002974785081,
+            "set_timer": 0.0017666063674603347,
+            "note_to_inbox": 0.0029382192066644353,
+            "search_notes": 0.004180299115194114,
+            "media_play_pause": 0.0012990001412131152,
+            "volume_up": 0.0011028656280455747,
+            "volume_down": 0.001145483320294644,
+            "ssh_to_host": 0.011899748608148356,
+            "clef_status": 0.004095927739060191,
+            "other": 0.022283433825267738
+          },
+          "confidence": 0.6933775425283574,
+          "band": "confirm",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.011066869787089704,
+          "confidence": 0.9889331302129103,
+          "probabilities": {
+            "false": 0.9889331302129103,
+            "true": 0.011066869787089704
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.00245707555089771,
+          "confidence": 0.9975429244491023,
+          "probabilities": {
+            "false": 0.9975429244491023,
+            "true": 0.00245707555089771
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.03357559692134993,
+          "confidence": 0.9664244030786501,
+          "probabilities": {
+            "false": 0.9664244030786501,
+            "true": 0.03357559692134993
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.015848607300819342,
+          "confidence": 0.9841513926991806,
+          "probabilities": {
+            "false": 0.9841513926991806,
+            "true": 0.015848607300819342
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.05059449988617194,
+          "confidence": 0.9494055001138281,
+          "probabilities": {
+            "false": 0.9494055001138281,
+            "true": 0.05059449988617194
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.14487420321908345,
+          "confidence": 0.8551257967809165,
+          "probabilities": {
+            "false": 0.8551257967809165,
+            "true": 0.14487420321908345
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.5293229413879345,
+          "probabilities": {
+            "0": 0.4992818041979681,
+            "1": 0.4721134502161294,
+            "2": 0.02860474558590252
+          },
+          "confidence": 0.20601558791809826,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "confirm",
+      "args": {
+        "input": "set up deadlock mod manager"
+      }
+    },
+    {
+      "input": "install a speech recognition service on buildbox",
+      "expected": "send_to_agent",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "send_to_agent",
+          "probabilities": {
+            "open_app": 0.046070077197123936,
+            "open_file": 0.0036568428282431928,
+            "open_recent": 0.003185329707844097,
+            "web_search": 0.03723496924797332,
+            "open_url": 0.005233093792623409,
+            "calc": 0.0010297077221038994,
+            "convert": 0.0010000310514316293,
+            "copy_result": 0.001241107874834255,
+            "paste_plain": 0.003711696030887867,
+            "send_to_agent": 0.7784974659874907,
+            "summarise_clipboard": 0.007845502162628379,
+            "rename_file": 0.0010345071326831054,
+            "move_to_folder": 0.0015146386943975807,
+            "kill_process": 0.001224816786197668,
+            "toggle_wifi": 0.0011022273662837738,
+            "lock_screen": 0.0012009153619241578,
+            "screenshot_region": 0.001748960356616094,
+            "switch_workspace": 0.007564097187619337,
+            "open_project": 0.00965131055542005,
+            "run_shell": 0.014892914915298358,
+            "define_word": 0.0024093601376080523,
+            "translate_clipboard": 0.0035221619200523995,
+            "set_timer": 0.0013472811612699385,
+            "note_to_inbox": 0.0029384307216532833,
+            "search_notes": 0.0033183438170737473,
+            "media_play_pause": 0.0009577244325207031,
+            "volume_up": 0.0010155511404558487,
+            "volume_down": 0.0009439356905181565,
+            "ssh_to_host": 0.027697708312037318,
+            "clef_status": 0.005524097321253846,
+            "other": 0.021685193385931605
+          },
+          "confidence": 0.7711140481870737,
+          "band": "confirm",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.007288622149091146,
+          "confidence": 0.9927113778509089,
+          "probabilities": {
+            "false": 0.9927113778509089,
+            "true": 0.007288622149091146
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.0028519435654844787,
+          "confidence": 0.9971480564345155,
+          "probabilities": {
+            "false": 0.9971480564345155,
+            "true": 0.0028519435654844787
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.013980351435973981,
+          "confidence": 0.986019648564026,
+          "probabilities": {
+            "false": 0.986019648564026,
+            "true": 0.013980351435973981
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.011767906840359024,
+          "confidence": 0.988232093159641,
+          "probabilities": {
+            "false": 0.988232093159641,
+            "true": 0.011767906840359024
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.04812298385797267,
+          "confidence": 0.9518770161420274,
+          "probabilities": {
+            "false": 0.9518770161420274,
+            "true": 0.04812298385797267
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.13827817121580488,
+          "confidence": 0.8617218287841951,
+          "probabilities": {
+            "false": 0.8617218287841951,
+            "true": 0.13827817121580488
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.5635862580600332,
+          "probabilities": {
+            "0": 0.46964538837437436,
+            "1": 0.497122965191218,
+            "2": 0.03323164643440759
+          },
+          "confidence": 0.24568444778682696,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "confirm",
+      "args": {
+        "input": "install a speech recognition service on buildbox"
+      }
+    },
+    {
+      "input": "deadlock mod manager",
+      "expected": "web_search",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "web_search",
+          "probabilities": {
+            "open_app": 0.2189509468183509,
+            "open_file": 0.030369047176634693,
+            "open_recent": 0.011507098270766451,
+            "web_search": 0.32068969262948915,
+            "open_url": 0.03070194694840752,
+            "calc": 0.0007359974982520573,
+            "convert": 0.0006969779650904031,
+            "copy_result": 0.0043749149037987925,
+            "paste_plain": 0.012918370696332353,
+            "send_to_agent": 0.15966462822574545,
+            "summarise_clipboard": 0.005937635820026608,
+            "rename_file": 0.0010072154278029724,
+            "move_to_folder": 0.0022652629800984122,
+            "kill_process": 0.016478632586139262,
+            "toggle_wifi": 0.0008044936846725631,
+            "lock_screen": 0.005564218395280646,
+            "screenshot_region": 0.004415315521838294,
+            "switch_workspace": 0.005726070153559157,
+            "open_project": 0.024063140684248183,
+            "run_shell": 0.01906628596437953,
+            "define_word": 0.027137630113919863,
+            "translate_clipboard": 0.002647222532732842,
+            "set_timer": 0.0011174802387177694,
+            "note_to_inbox": 0.005550657063785222,
+            "search_notes": 0.021636317188785375,
+            "media_play_pause": 0.0016779389301683667,
+            "volume_up": 0.0006414307070405762,
+            "volume_down": 0.0007237395291036434,
+            "ssh_to_host": 0.015780834918759434,
+            "clef_status": 0.007992660193741348,
+            "other": 0.03915619623233211
+          },
+          "confidence": 0.29804601571713873,
+          "band": "fallback",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.02914976791300061,
+          "confidence": 0.9708502320869994,
+          "probabilities": {
+            "false": 0.9708502320869994,
+            "true": 0.02914976791300061
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.0032866399875076027,
+          "confidence": 0.9967133600124924,
+          "probabilities": {
+            "false": 0.9967133600124924,
+            "true": 0.0032866399875076027
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.08851011013997764,
+          "confidence": 0.9114898898600223,
+          "probabilities": {
+            "false": 0.9114898898600223,
+            "true": 0.08851011013997764
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.03604212953485341,
+          "confidence": 0.9639578704651466,
+          "probabilities": {
+            "false": 0.9639578704651466,
+            "true": 0.03604212953485341
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.07033996512673213,
+          "confidence": 0.9296600348732679,
+          "probabilities": {
+            "false": 0.9296600348732679,
+            "true": 0.07033996512673213
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.3558338716725072,
+          "confidence": 0.6441661283274929,
+          "probabilities": {
+            "false": 0.6441661283274929,
+            "true": 0.3558338716725072
+          },
+          "band": "confirm",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.3309352324605931,
+          "probabilities": {
+            "0": 0.6943375011309336,
+            "1": 0.2803897652775396,
+            "2": 0.02527273359152673
+          },
+          "confidence": 0.5035971513091104,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "fallback",
+      "args": {
+        "input": "deadlock mod manager"
+      }
+    },
+    {
+      "input": "Is there a transcription server on buildbox",
+      "expected": "send_to_agent",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "send_to_agent",
+          "probabilities": {
+            "open_app": 0.05057637038849284,
+            "open_file": 0.020448529883532195,
+            "open_recent": 0.009340631310989805,
+            "web_search": 0.07286253695868633,
+            "open_url": 0.01517171177718558,
+            "calc": 0.0007691538606165803,
+            "convert": 0.0007386162228632976,
+            "copy_result": 0.0014319357232401306,
+            "paste_plain": 0.007447899020446006,
+            "send_to_agent": 0.331218578906371,
+            "summarise_clipboard": 0.03189571574747265,
+            "rename_file": 0.0008350396074041099,
+            "move_to_folder": 0.0013966911887757446,
+            "kill_process": 0.0009871338153350489,
+            "toggle_wifi": 0.0012006356325634166,
+            "lock_screen": 0.000904876151811038,
+            "screenshot_region": 0.0016662491632056765,
+            "switch_workspace": 0.03303937427944098,
+            "open_project": 0.018951218310045974,
+            "run_shell": 0.015682996510559266,
+            "define_word": 0.0032019942196224015,
+            "translate_clipboard": 0.011298384639424943,
+            "set_timer": 0.0009655275557975954,
+            "note_to_inbox": 0.0034730438200969945,
+            "search_notes": 0.03375065382133851,
+            "media_play_pause": 0.0007017572969458494,
+            "volume_up": 0.0007230139811039375,
+            "volume_down": 0.0007273599333290095,
+            "ssh_to_host": 0.25655832937161466,
+            "clef_status": 0.02765561833670886,
+            "other": 0.04437842256497955
+          },
+          "confidence": 0.3089258648699167,
+          "band": "fallback",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.06509269452424409,
+          "confidence": 0.934907305475756,
+          "probabilities": {
+            "false": 0.934907305475756,
+            "true": 0.06509269452424409
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.002843269988364287,
+          "confidence": 0.9971567300116357,
+          "probabilities": {
+            "false": 0.9971567300116357,
+            "true": 0.002843269988364287
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.025453843633717107,
+          "confidence": 0.974546156366283,
+          "probabilities": {
+            "false": 0.974546156366283,
+            "true": 0.025453843633717107
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.017633779835239196,
+          "confidence": 0.9823662201647608,
+          "probabilities": {
+            "false": 0.9823662201647608,
+            "true": 0.017633779835239196
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.46853049487640386,
+          "confidence": 0.5314695051235961,
+          "probabilities": {
+            "false": 0.5314695051235961,
+            "true": 0.46853049487640386
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.17057244139673136,
+          "confidence": 0.8294275586032687,
+          "probabilities": {
+            "false": 0.8294275586032687,
+            "true": 0.17057244139673136
+          },
+          "band": "confirm",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.40371757325812657,
+          "probabilities": {
+            "0": 0.6239466992802299,
+            "1": 0.34838902818141315,
+            "2": 0.02766427253835672
+          },
+          "confidence": 0.39442364011281006,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "fallback",
+      "args": {
+        "input": "Is there a transcription server on buildbox"
+      }
+    },
+    {
+      "input": "Does buildbox have a speech recognition service running",
+      "expected": "send_to_agent",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "send_to_agent",
+          "probabilities": {
+            "open_app": 0.05921339337622027,
+            "open_file": 0.010731234481067886,
+            "open_recent": 0.008748533540019095,
+            "web_search": 0.06420969572887561,
+            "open_url": 0.018522372255448,
+            "calc": 0.001207565569375653,
+            "convert": 0.001151899047361077,
+            "copy_result": 0.0021513638326153602,
+            "paste_plain": 0.010173574338678278,
+            "send_to_agent": 0.4919922032477465,
+            "summarise_clipboard": 0.03161786734665261,
+            "rename_file": 0.0012477664412750167,
+            "move_to_folder": 0.0017746391366618237,
+            "kill_process": 0.0016911510068807103,
+            "toggle_wifi": 0.0013217366876375613,
+            "lock_screen": 0.001492747260064585,
+            "screenshot_region": 0.0032144417559171862,
+            "switch_workspace": 0.010656845962874148,
+            "open_project": 0.014649925846666802,
+            "run_shell": 0.01755183431980199,
+            "define_word": 0.003949161795738087,
+            "translate_clipboard": 0.010282738889584146,
+            "set_timer": 0.0014221782647110869,
+            "note_to_inbox": 0.004673850603123624,
+            "search_notes": 0.011490549198320049,
+            "media_play_pause": 0.0011288110869065225,
+            "volume_up": 0.001058639474631033,
+            "volume_down": 0.0010780033500224562,
+            "ssh_to_host": 0.07578118247980836,
+            "clef_status": 0.0867230238558531,
+            "other": 0.049091069819461264
+          },
+          "confidence": 0.4750586100226714,
+          "band": "fallback",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.015252062536102956,
+          "confidence": 0.984747937463897,
+          "probabilities": {
+            "false": 0.984747937463897,
+            "true": 0.015252062536102956
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.0029165471623928702,
+          "confidence": 0.9970834528376071,
+          "probabilities": {
+            "false": 0.9970834528376071,
+            "true": 0.0029165471623928702
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.025055293088307035,
+          "confidence": 0.974944706911693,
+          "probabilities": {
+            "false": 0.974944706911693,
+            "true": 0.025055293088307035
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.03743195643875651,
+          "confidence": 0.9625680435612435,
+          "probabilities": {
+            "false": 0.9625680435612435,
+            "true": 0.03743195643875651
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.5821767099167229,
+          "confidence": 0.5821767099167229,
+          "probabilities": {
+            "false": 0.4178232900832771,
+            "true": 0.5821767099167229
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.10516191946051401,
+          "confidence": 0.894838080539486,
+          "probabilities": {
+            "false": 0.894838080539486,
+            "true": 0.10516191946051401
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.42801033958584644,
+          "probabilities": {
+            "0": 0.5974838171541528,
+            "1": 0.37702202610584773,
+            "2": 0.02549415673999937
+          },
+          "confidence": 0.3579844906212303,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "fallback",
+      "args": {
+        "input": "Does buildbox have a speech recognition service running"
+      }
+    },
+    {
+      "input": "What is a transcription model?",
+      "expected": "send_to_agent",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "send_to_agent",
+          "probabilities": {
+            "open_app": 0.02512053570251354,
+            "open_file": 0.006403093859931864,
+            "open_recent": 0.005372202540322532,
+            "web_search": 0.31924420010938975,
+            "open_url": 0.005294204173460761,
+            "calc": 0.0007409521829952664,
+            "convert": 0.0006927958950955101,
+            "copy_result": 0.0017026523963819015,
+            "paste_plain": 0.009263939019971407,
+            "send_to_agent": 0.32297208062744437,
+            "summarise_clipboard": 0.01087414668691497,
+            "rename_file": 0.0006266360933181082,
+            "move_to_folder": 0.0006915390605735536,
+            "kill_process": 0.0007520242640748015,
+            "toggle_wifi": 0.0006315869997751413,
+            "lock_screen": 0.0006747997150195993,
+            "screenshot_region": 0.0013070699833612016,
+            "switch_workspace": 0.0014047542711957026,
+            "open_project": 0.0082637575529352,
+            "run_shell": 0.0019752770987353017,
+            "define_word": 0.20912001217599369,
+            "translate_clipboard": 0.002889897885132909,
+            "set_timer": 0.0007523894004789448,
+            "note_to_inbox": 0.004738395982348791,
+            "search_notes": 0.015911444475603505,
+            "media_play_pause": 0.0005659657640762039,
+            "volume_up": 0.0005663717994094772,
+            "volume_down": 0.000587629375865178,
+            "ssh_to_host": 0.003971400192523647,
+            "clef_status": 0.006876035279191849,
+            "other": 0.030012209435965262
+          },
+          "confidence": 0.30040448331502584,
+          "band": "fallback",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.01626485019997219,
+          "confidence": 0.9837351498000279,
+          "probabilities": {
+            "false": 0.9837351498000279,
+            "true": 0.01626485019997219
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.00313826648421736,
+          "confidence": 0.9968617335157827,
+          "probabilities": {
+            "false": 0.9968617335157827,
+            "true": 0.00313826648421736
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.015013900015538763,
+          "confidence": 0.9849860999844612,
+          "probabilities": {
+            "false": 0.9849860999844612,
+            "true": 0.015013900015538763
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.02192194716645829,
+          "confidence": 0.9780780528335418,
+          "probabilities": {
+            "false": 0.9780780528335418,
+            "true": 0.02192194716645829
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.7054229930015202,
+          "confidence": 0.7054229930015202,
+          "probabilities": {
+            "false": 0.2945770069984798,
+            "true": 0.7054229930015202
+          },
+          "band": "confirm",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.13745662107116963,
+          "confidence": 0.8625433789288304,
+          "probabilities": {
+            "false": 0.8625433789288304,
+            "true": 0.13745662107116963
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.26470812070635646,
+          "probabilities": {
+            "0": 0.7398283024308385,
+            "1": 0.2556352744319664,
+            "2": 0.004536423137195057
+          },
+          "confidence": 0.6029378189404653,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "confirm",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "fallback",
+      "args": {
+        "input": "What is a transcription model?"
+      }
+    },
+    {
+      "input": "speech recognition models",
+      "expected": "web_search",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "web_search",
+          "probabilities": {
+            "open_app": 0.05842471836969494,
+            "open_file": 0.0109508444730608,
+            "open_recent": 0.012394588989878193,
+            "web_search": 0.6027590675593799,
+            "open_url": 0.007892811988542893,
+            "calc": 0.0007901397378321964,
+            "convert": 0.0006927016725942065,
+            "copy_result": 0.005936176009222396,
+            "paste_plain": 0.019302087188385896,
+            "send_to_agent": 0.12152175299706483,
+            "summarise_clipboard": 0.020376752976967533,
+            "rename_file": 0.0009882725273202336,
+            "move_to_folder": 0.0012473800915841755,
+            "kill_process": 0.0008322985930197599,
+            "toggle_wifi": 0.0006578205713273477,
+            "lock_screen": 0.0009305083995628555,
+            "screenshot_region": 0.002229424406234803,
+            "switch_workspace": 0.002614340371148745,
+            "open_project": 0.017506646135077932,
+            "run_shell": 0.005397366284831521,
+            "define_word": 0.016717837715131183,
+            "translate_clipboard": 0.005653887526038483,
+            "set_timer": 0.0009711083707007708,
+            "note_to_inbox": 0.005547863679702098,
+            "search_notes": 0.030078952986955156,
+            "media_play_pause": 0.001201696834027887,
+            "volume_up": 0.0006604204008064697,
+            "volume_down": 0.0006736759901628267,
+            "ssh_to_host": 0.005438280998754281,
+            "clef_status": 0.008477772725314707,
+            "other": 0.031132803429675008
+          },
+          "confidence": 0.5895177031446925,
+          "band": "fallback",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.034024067861984614,
+          "confidence": 0.9659759321380154,
+          "probabilities": {
+            "false": 0.9659759321380154,
+            "true": 0.034024067861984614
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.002989848824149332,
+          "confidence": 0.9970101511758507,
+          "probabilities": {
+            "false": 0.9970101511758507,
+            "true": 0.002989848824149332
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.01818295561852198,
+          "confidence": 0.981817044381478,
+          "probabilities": {
+            "false": 0.981817044381478,
+            "true": 0.01818295561852198
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.05057732982506904,
+          "confidence": 0.949422670174931,
+          "probabilities": {
+            "false": 0.949422670174931,
+            "true": 0.05057732982506904
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.04374395261779495,
+          "confidence": 0.956256047382205,
+          "probabilities": {
+            "false": 0.956256047382205,
+            "true": 0.04374395261779495
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.2459033363035897,
+          "confidence": 0.7540966636964103,
+          "probabilities": {
+            "false": 0.7540966636964103,
+            "true": 0.2459033363035897
+          },
+          "band": "confirm",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.1931155646751636,
+          "probabilities": {
+            "0": 0.815954447891792,
+            "1": 0.17497553954125242,
+            "2": 0.009070012566955601
+          },
+          "confidence": 0.7103266529872545,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "confirm",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "fallback",
+      "args": {
+        "input": "speech recognition models"
+      }
+    },
+    {
+      "input": "Check whether a transcription service is running on buildbox",
+      "expected": "send_to_agent",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "send_to_agent",
+          "probabilities": {
+            "open_app": 0.037874840773068165,
+            "open_file": 0.009081976588523217,
+            "open_recent": 0.004923929317414309,
+            "web_search": 0.04154297278273533,
+            "open_url": 0.019524483794400894,
+            "calc": 0.001164788391766702,
+            "convert": 0.0010955403785259206,
+            "copy_result": 0.0016764636738342124,
+            "paste_plain": 0.00259502351743639,
+            "send_to_agent": 0.4928297511974641,
+            "summarise_clipboard": 0.015858167868135962,
+            "rename_file": 0.0011947634038402821,
+            "move_to_folder": 0.0016294077080060742,
+            "kill_process": 0.005218376481431789,
+            "toggle_wifi": 0.002687514756573966,
+            "lock_screen": 0.0014151356164617914,
+            "screenshot_region": 0.0030023275115266313,
+            "switch_workspace": 0.011710427418304208,
+            "open_project": 0.014241653621509974,
+            "run_shell": 0.04752013064377785,
+            "define_word": 0.0023138518884904336,
+            "translate_clipboard": 0.007997070421924836,
+            "set_timer": 0.0015625324000810472,
+            "note_to_inbox": 0.0030814918159496546,
+            "search_notes": 0.009288340880922199,
+            "media_play_pause": 0.0012854383207204917,
+            "volume_up": 0.0010233294261183421,
+            "volume_down": 0.0010398485495147157,
+            "ssh_to_host": 0.18155366030381945,
+            "clef_status": 0.02595261192795737,
+            "other": 0.04811414861976356
+          },
+          "confidence": 0.4759240762373796,
+          "band": "fallback",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.01010800325404639,
+          "confidence": 0.9898919967459536,
+          "probabilities": {
+            "false": 0.9898919967459536,
+            "true": 0.01010800325404639
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.0028800099360164573,
+          "confidence": 0.9971199900639836,
+          "probabilities": {
+            "false": 0.9971199900639836,
+            "true": 0.0028800099360164573
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.017735927470796612,
+          "confidence": 0.9822640725292033,
+          "probabilities": {
+            "false": 0.9822640725292033,
+            "true": 0.017735927470796612
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.008356608289493079,
+          "confidence": 0.991643391710507,
+          "probabilities": {
+            "false": 0.991643391710507,
+            "true": 0.008356608289493079
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.38504941094179745,
+          "confidence": 0.6149505890582025,
+          "probabilities": {
+            "false": 0.6149505890582025,
+            "true": 0.38504941094179745
+          },
+          "band": "confirm",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.06755754894221268,
+          "confidence": 0.9324424510577873,
+          "probabilities": {
+            "false": 0.9324424510577873,
+            "true": 0.06755754894221268
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.5482934468734948,
+          "probabilities": {
+            "0": 0.49770811317101343,
+            "1": 0.45629032678447845,
+            "2": 0.04600156004450816
+          },
+          "confidence": 0.1775598296897578,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "fallback",
+      "args": {
+        "input": "Check whether a transcription service is running on buildbox"
+      }
+    },
+    {
+      "input": "search the web for transcription models",
+      "expected": "web_search",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "web_search",
+          "probabilities": {
+            "open_app": 0.02540474838377956,
+            "open_file": 0.006633582600499354,
+            "open_recent": 0.0061120810457902805,
+            "web_search": 0.7692169343963244,
+            "open_url": 0.014323811208529078,
+            "calc": 0.0039047413306777744,
+            "convert": 0.0036557393867390994,
+            "copy_result": 0.0051241340301054076,
+            "paste_plain": 0.008865458204886784,
+            "send_to_agent": 0.02386312867608848,
+            "summarise_clipboard": 0.010297974136573398,
+            "rename_file": 0.003872446460969837,
+            "move_to_folder": 0.004251326943415431,
+            "kill_process": 0.004072539243718033,
+            "toggle_wifi": 0.0033184539398909483,
+            "lock_screen": 0.0034767282937977766,
+            "screenshot_region": 0.0046632751098533215,
+            "switch_workspace": 0.004333137033952062,
+            "open_project": 0.008136449220775315,
+            "run_shell": 0.007695284915724234,
+            "define_word": 0.015048549982701595,
+            "translate_clipboard": 0.006477691504372743,
+            "set_timer": 0.004098226308754673,
+            "note_to_inbox": 0.004803360484043811,
+            "search_notes": 0.010238296623550846,
+            "media_play_pause": 0.003741588759992466,
+            "volume_up": 0.003531741502263329,
+            "volume_down": 0.0038206956270080443,
+            "ssh_to_host": 0.0075082722509372595,
+            "clef_status": 0.007136620809223895,
+            "other": 0.012372981585060693
+          },
+          "confidence": 0.7615241655428686,
+          "band": "confirm",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.015225171760822073,
+          "confidence": 0.984774828239178,
+          "probabilities": {
+            "false": 0.984774828239178,
+            "true": 0.015225171760822073
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.003186204791248427,
+          "confidence": 0.9968137952087516,
+          "probabilities": {
+            "false": 0.9968137952087516,
+            "true": 0.003186204791248427
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.021611528823765675,
+          "confidence": 0.9783884711762343,
+          "probabilities": {
+            "false": 0.9783884711762343,
+            "true": 0.021611528823765675
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.01882533575618085,
+          "confidence": 0.9811746642438192,
+          "probabilities": {
+            "false": 0.9811746642438192,
+            "true": 0.01882533575618085
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.0848664867838838,
+          "confidence": 0.9151335132161162,
+          "probabilities": {
+            "false": 0.9151335132161162,
+            "true": 0.0848664867838838
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.06712207141583994,
+          "confidence": 0.9328779285841601,
+          "probabilities": {
+            "false": 0.9328779285841601,
+            "true": 0.06712207141583994
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.45795624874268537,
+          "probabilities": {
+            "0": 0.5649120604158795,
+            "1": 0.41221963042555565,
+            "2": 0.022868309158564845
+          },
+          "confidence": 0.31306562688597195,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "confirm",
+      "args": {
+        "input": "search the web for transcription models"
+      }
+    },
+    {
+      "input": "search the web for whether buildbox has a transcription server",
+      "expected": "web_search",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "web_search",
+          "probabilities": {
+            "open_app": 0.026063073732206128,
+            "open_file": 0.007862538186810314,
+            "open_recent": 0.00635981593738664,
+            "web_search": 0.6880432036815438,
+            "open_url": 0.018988623474413286,
+            "calc": 0.003977932089211086,
+            "convert": 0.00391355314785478,
+            "copy_result": 0.005472612754021996,
+            "paste_plain": 0.009068183822687172,
+            "send_to_agent": 0.05578406182287036,
+            "summarise_clipboard": 0.011774719159607896,
+            "rename_file": 0.004056395572242447,
+            "move_to_folder": 0.004348485660432698,
+            "kill_process": 0.004270297640071803,
+            "toggle_wifi": 0.003614925986707115,
+            "lock_screen": 0.0038656411734574827,
+            "screenshot_region": 0.005163257689899854,
+            "switch_workspace": 0.004949266371607027,
+            "open_project": 0.009110506599300974,
+            "run_shell": 0.011713455111078611,
+            "define_word": 0.010776334551364121,
+            "translate_clipboard": 0.006157567405665493,
+            "set_timer": 0.004211257578148765,
+            "note_to_inbox": 0.005435508726999287,
+            "search_notes": 0.01682151206399746,
+            "media_play_pause": 0.003967630512306619,
+            "volume_up": 0.0034653250685078283,
+            "volume_down": 0.003807260034748799,
+            "ssh_to_host": 0.027024481110816023,
+            "clef_status": 0.013244020534069307,
+            "other": 0.016688552799964746
+          },
+          "confidence": 0.6776446438042619,
+          "band": "confirm",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.02079458644163828,
+          "confidence": 0.9792054135583618,
+          "probabilities": {
+            "false": 0.9792054135583618,
+            "true": 0.02079458644163828
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.0024482271272000112,
+          "confidence": 0.9975517728728,
+          "probabilities": {
+            "false": 0.9975517728728,
+            "true": 0.0024482271272000112
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.01884575168719156,
+          "confidence": 0.9811542483128084,
+          "probabilities": {
+            "false": 0.9811542483128084,
+            "true": 0.01884575168719156
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.01075008752530433,
+          "confidence": 0.9892499124746956,
+          "probabilities": {
+            "false": 0.9892499124746956,
+            "true": 0.01075008752530433
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.18911038545807457,
+          "confidence": 0.8108896145419254,
+          "probabilities": {
+            "false": 0.8108896145419254,
+            "true": 0.18911038545807457
+          },
+          "band": "confirm",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.08368583856711809,
+          "confidence": 0.9163141614328819,
+          "probabilities": {
+            "false": 0.9163141614328819,
+            "true": 0.08368583856711809
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.47217495514623764,
+          "probabilities": {
+            "0": 0.5552357718199276,
+            "1": 0.4173535012139072,
+            "2": 0.027410726966165238
+          },
+          "confidence": 0.2917375672806435,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "confirm",
+      "args": {
+        "input": "search the web for whether buildbox has a transcription server"
+      }
+    },
+    {
+      "input": "ssh buildbox",
+      "expected": "ssh_to_host",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "ssh_to_host",
+          "probabilities": {
+            "open_app": 0.02555430083503145,
+            "open_file": 0.012408820990927057,
+            "open_recent": 0.011607404753023087,
+            "web_search": 0.022320195207010025,
+            "open_url": 0.014784279520554425,
+            "calc": 0.0032229640355529677,
+            "convert": 0.0036908796517478555,
+            "copy_result": 0.004447049810857519,
+            "paste_plain": 0.009441209094725494,
+            "send_to_agent": 0.022389434625137414,
+            "summarise_clipboard": 0.007297592821513152,
+            "rename_file": 0.0036711875086667396,
+            "move_to_folder": 0.004723589128494015,
+            "kill_process": 0.004214797301680378,
+            "toggle_wifi": 0.0035863052858826796,
+            "lock_screen": 0.0038634961824593624,
+            "screenshot_region": 0.004426635925116166,
+            "switch_workspace": 0.022374370359802567,
+            "open_project": 0.013338048799104985,
+            "run_shell": 0.01600138883928001,
+            "define_word": 0.005253302232056956,
+            "translate_clipboard": 0.00607207827181979,
+            "set_timer": 0.0036743994374159508,
+            "note_to_inbox": 0.005470309001036779,
+            "search_notes": 0.00687824360868574,
+            "media_play_pause": 0.003349305850916829,
+            "volume_up": 0.0030851485093503967,
+            "volume_down": 0.003209032142706457,
+            "ssh_to_host": 0.7272148482585615,
+            "clef_status": 0.006955642964762057,
+            "other": 0.01547373904611985
+          },
+          "confidence": 0.7181220098671802,
+          "band": "confirm",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.017230981362214307,
+          "confidence": 0.9827690186377857,
+          "probabilities": {
+            "false": 0.9827690186377857,
+            "true": 0.017230981362214307
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.0023447034658361796,
+          "confidence": 0.9976552965341638,
+          "probabilities": {
+            "false": 0.9976552965341638,
+            "true": 0.0023447034658361796
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.03241336791294465,
+          "confidence": 0.9675866320870553,
+          "probabilities": {
+            "false": 0.9675866320870553,
+            "true": 0.03241336791294465
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.02677234731366779,
+          "confidence": 0.9732276526863322,
+          "probabilities": {
+            "false": 0.9732276526863322,
+            "true": 0.02677234731366779
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.05531932185809644,
+          "confidence": 0.9446806781419036,
+          "probabilities": {
+            "false": 0.9446806781419036,
+            "true": 0.05531932185809644
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.11041010165229867,
+          "confidence": 0.8895898983477013,
+          "probabilities": {
+            "false": 0.8895898983477013,
+            "true": 0.11041010165229867
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.7707352026960929,
+          "probabilities": {
+            "0": 0.3257763420334246,
+            "1": 0.577712113237058,
+            "2": 0.09651154472951745
+          },
+          "confidence": 0.36656816985558693,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "confirm",
+      "args": {
+        "host": "buildbox"
+      }
+    },
+    {
+      "input": "clef status",
+      "expected": "clef_status",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "clef_status",
+          "probabilities": {
+            "open_app": 0.04018121230561107,
+            "open_file": 0.01037948946594387,
+            "open_recent": 0.009593610406715134,
+            "web_search": 0.026712485534185124,
+            "open_url": 0.006240328682476504,
+            "calc": 0.0009916946626370832,
+            "convert": 0.000691293148802146,
+            "copy_result": 0.006787942543063113,
+            "paste_plain": 0.006030384230103228,
+            "send_to_agent": 0.03517950011915027,
+            "summarise_clipboard": 0.004834961847612,
+            "rename_file": 0.0008615010683425083,
+            "move_to_folder": 0.0011001341694050978,
+            "kill_process": 0.0014601099903353903,
+            "toggle_wifi": 0.0009192455959897427,
+            "lock_screen": 0.001750642108360942,
+            "screenshot_region": 0.0018166826978568793,
+            "switch_workspace": 0.004687230366527573,
+            "open_project": 0.009032910847813522,
+            "run_shell": 0.004555334083557063,
+            "define_word": 0.006935690781581219,
+            "translate_clipboard": 0.0014025319099418227,
+            "set_timer": 0.0010895027024246796,
+            "note_to_inbox": 0.002709393869424787,
+            "search_notes": 0.0054466123913024965,
+            "media_play_pause": 0.0016710224818722401,
+            "volume_up": 0.0006187505445991311,
+            "volume_down": 0.0006649435971517607,
+            "ssh_to_host": 0.007255734157934031,
+            "clef_status": 0.7811879838806299,
+            "other": 0.01721113980864983
+          },
+          "confidence": 0.7738942500099842,
+          "band": "confirm",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.00723774043750927,
+          "confidence": 0.9927622595624908,
+          "probabilities": {
+            "false": 0.9927622595624908,
+            "true": 0.00723774043750927
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.0028563642599757945,
+          "confidence": 0.9971436357400242,
+          "probabilities": {
+            "false": 0.9971436357400242,
+            "true": 0.0028563642599757945
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.008811856578590474,
+          "confidence": 0.9911881434214095,
+          "probabilities": {
+            "false": 0.9911881434214095,
+            "true": 0.008811856578590474
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.012583953689976382,
+          "confidence": 0.9874160463100237,
+          "probabilities": {
+            "false": 0.9874160463100237,
+            "true": 0.012583953689976382
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.4643944770789121,
+          "confidence": 0.5356055229210879,
+          "probabilities": {
+            "false": 0.5356055229210879,
+            "true": 0.4643944770789121
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.10004237258089259,
+          "confidence": 0.8999576274191075,
+          "probabilities": {
+            "false": 0.8999576274191075,
+            "true": 0.10004237258089259
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.4557783923418637,
+          "probabilities": {
+            "0": 0.5918923885134361,
+            "1": 0.36043683063126414,
+            "2": 0.047670780855299785
+          },
+          "confidence": 0.3163324114872045,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "confirm",
+      "args": {}
+    },
+    {
+      "input": "2+2",
+      "expected": "calc",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "calc",
+          "probabilities": {
+            "open_app": 0.007862971172285523,
+            "open_file": 0.0023146620155841675,
+            "open_recent": 0.002185515072240114,
+            "web_search": 0.004771011868891308,
+            "open_url": 0.0025249003172964266,
+            "calc": 0.9156621209799523,
+            "convert": 0.0020172433918840375,
+            "copy_result": 0.003974035046884575,
+            "paste_plain": 0.002792349525883448,
+            "send_to_agent": 0.009049415226670923,
+            "summarise_clipboard": 0.0018214545119812308,
+            "rename_file": 0.0018041783797433232,
+            "move_to_folder": 0.0019494178250906988,
+            "kill_process": 0.0020574478450878816,
+            "toggle_wifi": 0.0017012734839002355,
+            "lock_screen": 0.0015592888359481827,
+            "screenshot_region": 0.0020866475810488853,
+            "switch_workspace": 0.001959410033812662,
+            "open_project": 0.002625523477371104,
+            "run_shell": 0.0034195162829366347,
+            "define_word": 0.001882678389408553,
+            "translate_clipboard": 0.001682486056373208,
+            "set_timer": 0.0020167701942628634,
+            "note_to_inbox": 0.0019261102590929344,
+            "search_notes": 0.002316575547421623,
+            "media_play_pause": 0.0017309015477217906,
+            "volume_up": 0.0017158460198990846,
+            "volume_down": 0.0019225875895594437,
+            "ssh_to_host": 0.002564582222745351,
+            "clef_status": 0.00236592395587401,
+            "other": 0.0057371553431473455
+          },
+          "confidence": 0.9128508583459507,
+          "band": "act",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.006848148662088425,
+          "confidence": 0.9931518513379116,
+          "probabilities": {
+            "false": 0.9931518513379116,
+            "true": 0.006848148662088425
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.9714077935921994,
+          "confidence": 0.9714077935921994,
+          "probabilities": {
+            "false": 0.02859220640780058,
+            "true": 0.9714077935921994
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.007206808150850452,
+          "confidence": 0.9927931918491495,
+          "probabilities": {
+            "false": 0.9927931918491495,
+            "true": 0.007206808150850452
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.010467226327632822,
+          "confidence": 0.9895327736723671,
+          "probabilities": {
+            "false": 0.9895327736723671,
+            "true": 0.010467226327632822
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.3697708287453198,
+          "confidence": 0.6302291712546801,
+          "probabilities": {
+            "false": 0.6302291712546801,
+            "true": 0.3697708287453198
+          },
+          "band": "confirm",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.12005714930535151,
+          "confidence": 0.8799428506946485,
+          "probabilities": {
+            "false": 0.8799428506946485,
+            "true": 0.12005714930535151
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.08953077619086994,
+          "probabilities": {
+            "0": 0.9213243536191659,
+            "1": 0.06782051657079792,
+            "2": 0.010855129810036005
+          },
+          "confidence": 0.865703835713695,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "act",
+      "args": {
+        "expr": "2+2"
+      }
+    },
+    {
+      "input": "What is 2+2?",
+      "expected": "calc",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "calc",
+          "probabilities": {
+            "open_app": 0.005987219379273127,
+            "open_file": 0.0020030775293752886,
+            "open_recent": 0.0019684207448565807,
+            "web_search": 0.0042816392844280265,
+            "open_url": 0.002255183283719894,
+            "calc": 0.9227537786188924,
+            "convert": 0.0018358900787795649,
+            "copy_result": 0.0023828752519467985,
+            "paste_plain": 0.00236424137924653,
+            "send_to_agent": 0.00955100299843674,
+            "summarise_clipboard": 0.0017516957616312745,
+            "rename_file": 0.0019008748248068614,
+            "move_to_folder": 0.001972678212228564,
+            "kill_process": 0.002231173510105514,
+            "toggle_wifi": 0.0018468945750426302,
+            "lock_screen": 0.001620764603850807,
+            "screenshot_region": 0.002025473805910518,
+            "switch_workspace": 0.0017446177916448833,
+            "open_project": 0.0023136843682894466,
+            "run_shell": 0.0027386383690431565,
+            "define_word": 0.00186705219068115,
+            "translate_clipboard": 0.0017856248999048702,
+            "set_timer": 0.0019900565606099613,
+            "note_to_inbox": 0.0017388025511230738,
+            "search_notes": 0.00210513337009367,
+            "media_play_pause": 0.0018409297764529265,
+            "volume_up": 0.0017149233911178815,
+            "volume_down": 0.0019083574068969249,
+            "ssh_to_host": 0.0023891441852366066,
+            "clef_status": 0.0023315506368265875,
+            "other": 0.004798600659547291
+          },
+          "confidence": 0.9201789045728554,
+          "band": "act",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.005918099615106995,
+          "confidence": 0.994081900384893,
+          "probabilities": {
+            "false": 0.994081900384893,
+            "true": 0.005918099615106995
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.9717115650400326,
+          "confidence": 0.9717115650400326,
+          "probabilities": {
+            "false": 0.028288434959967357,
+            "true": 0.9717115650400326
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.00631931896285551,
+          "confidence": 0.9936806810371445,
+          "probabilities": {
+            "false": 0.9936806810371445,
+            "true": 0.00631931896285551
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.006484299487436265,
+          "confidence": 0.9935157005125638,
+          "probabilities": {
+            "false": 0.9935157005125638,
+            "true": 0.006484299487436265
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.6405735258983014,
+          "confidence": 0.6405735258983014,
+          "probabilities": {
+            "false": 0.3594264741016986,
+            "true": 0.6405735258983014
+          },
+          "band": "confirm",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.09872245231082628,
+          "confidence": 0.9012775476891737,
+          "probabilities": {
+            "false": 0.9012775476891737,
+            "true": 0.09872245231082628
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.07138476882098599,
+          "probabilities": {
+            "0": 0.9387309958508322,
+            "1": 0.05115323947734948,
+            "2": 0.010115764671818251
+          },
+          "confidence": 0.8929228467685211,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "act",
+      "args": {
+        "expr": "2+2"
+      }
+    },
+    {
+      "input": "5 km to mi",
+      "expected": "convert",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "convert",
+          "probabilities": {
+            "open_app": 0.005817745714500052,
+            "open_file": 0.0021644002908851297,
+            "open_recent": 0.0020987411936709034,
+            "web_search": 0.006053363547411906,
+            "open_url": 0.0027827571745216084,
+            "calc": 0.006899822065989646,
+            "convert": 0.9159257285675403,
+            "copy_result": 0.0032716176991204795,
+            "paste_plain": 0.0025730100077959845,
+            "send_to_agent": 0.005858408694087977,
+            "summarise_clipboard": 0.0019182675439416061,
+            "rename_file": 0.001940239145833043,
+            "move_to_folder": 0.002114435422554419,
+            "kill_process": 0.0022623752730419333,
+            "toggle_wifi": 0.0018846476100932213,
+            "lock_screen": 0.0017372332034493309,
+            "screenshot_region": 0.0021818013601299473,
+            "switch_workspace": 0.0019341047558722054,
+            "open_project": 0.002430045171927518,
+            "run_shell": 0.002632686113074173,
+            "define_word": 0.0023336543549689432,
+            "translate_clipboard": 0.0023853721715798174,
+            "set_timer": 0.002019721225548767,
+            "note_to_inbox": 0.001982569716737703,
+            "search_notes": 0.0021220583282455215,
+            "media_play_pause": 0.0018517484655259124,
+            "volume_up": 0.0019671778193742825,
+            "volume_down": 0.002140256597105041,
+            "ssh_to_host": 0.002590629551479383,
+            "clef_status": 0.0020588261244704337,
+            "other": 0.0040665550895231896
+          },
+          "confidence": 0.913123252853125,
+          "band": "act",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.011823365587734141,
+          "confidence": 0.9881766344122659,
+          "probabilities": {
+            "false": 0.9881766344122659,
+            "true": 0.011823365587734141
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.9196074003605524,
+          "confidence": 0.9196074003605524,
+          "probabilities": {
+            "false": 0.08039259963944756,
+            "true": 0.9196074003605524
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.011497278296306805,
+          "confidence": 0.9885027217036932,
+          "probabilities": {
+            "false": 0.9885027217036932,
+            "true": 0.011497278296306805
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.009507344616734217,
+          "confidence": 0.9904926553832658,
+          "probabilities": {
+            "false": 0.9904926553832658,
+            "true": 0.009507344616734217
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.3183748574761191,
+          "confidence": 0.6816251425238808,
+          "probabilities": {
+            "false": 0.6816251425238808,
+            "true": 0.3183748574761191
+          },
+          "band": "confirm",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.09100868693992288,
+          "confidence": 0.9089913130600771,
+          "probabilities": {
+            "false": 0.9089913130600771,
+            "true": 0.09100868693992288
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.170866504671671,
+          "probabilities": {
+            "0": 0.8487220425493556,
+            "1": 0.13168941022961797,
+            "2": 0.019588547221026514
+          },
+          "confidence": 0.7437002429924935,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "confirm",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "act",
+      "args": {
+        "input": "5 km to mi",
+        "value": 5,
+        "fromUnit": "km",
+        "toUnit": "mi"
+      }
+    },
+    {
+      "input": "https://example.org",
+      "expected": "open_url",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "open_url",
+          "probabilities": {
+            "open_app": 0.007514788294566214,
+            "open_file": 0.002648606894196532,
+            "open_recent": 0.002451376752221575,
+            "web_search": 0.008512376679277877,
+            "open_url": 0.928297751915896,
+            "calc": 0.0010370397355664177,
+            "convert": 0.0012140635432743576,
+            "copy_result": 0.0033122761761020733,
+            "paste_plain": 0.003118367164617994,
+            "send_to_agent": 0.004312722081326151,
+            "summarise_clipboard": 0.0017043544283141207,
+            "rename_file": 0.001060414637701757,
+            "move_to_folder": 0.0012838766035387433,
+            "kill_process": 0.0012487042649841707,
+            "toggle_wifi": 0.001000081034516049,
+            "lock_screen": 0.0011714057512999135,
+            "screenshot_region": 0.0017402586040008662,
+            "switch_workspace": 0.0015432385441570147,
+            "open_project": 0.003044194688970738,
+            "run_shell": 0.0017902085172694095,
+            "define_word": 0.0027592195283371616,
+            "translate_clipboard": 0.0014140978735403943,
+            "set_timer": 0.0011960747687646662,
+            "note_to_inbox": 0.0015316583530791009,
+            "search_notes": 0.0016087771021844827,
+            "media_play_pause": 0.0011918071849015405,
+            "volume_up": 0.0011351748338986167,
+            "volume_down": 0.0011818808074414132,
+            "ssh_to_host": 0.004935638307174911,
+            "clef_status": 0.0016198115044291745,
+            "other": 0.003419753424450216
+          },
+          "confidence": 0.9259076769797593,
+          "band": "act",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.01406761448465549,
+          "confidence": 0.9859323855153445,
+          "probabilities": {
+            "false": 0.9859323855153445,
+            "true": 0.01406761448465549
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.003280694757197459,
+          "confidence": 0.9967193052428025,
+          "probabilities": {
+            "false": 0.9967193052428025,
+            "true": 0.003280694757197459
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.9703964087443941,
+          "confidence": 0.9703964087443941,
+          "probabilities": {
+            "false": 0.029603591255605854,
+            "true": 0.9703964087443941
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.03685291800302068,
+          "confidence": 0.9631470819969793,
+          "probabilities": {
+            "false": 0.9631470819969793,
+            "true": 0.03685291800302068
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.05795822422009048,
+          "confidence": 0.9420417757799096,
+          "probabilities": {
+            "false": 0.9420417757799096,
+            "true": 0.05795822422009048
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.11685715653598162,
+          "confidence": 0.8831428434640184,
+          "probabilities": {
+            "false": 0.8831428434640184,
+            "true": 0.11685715653598162
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.4938545378106135,
+          "probabilities": {
+            "0": 0.5396291682613126,
+            "1": 0.4268871256667612,
+            "2": 0.03348370607192615
+          },
+          "confidence": 0.2592181932840797,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "act",
+      "args": {
+        "url": "https://example.org/"
+      }
+    },
+    {
+      "input": "open Firefox",
+      "expected": "open_app",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "open_app",
+          "probabilities": {
+            "open_app": 0.6715380344077373,
+            "open_file": 0.04859747149316999,
+            "open_recent": 0.037972696985549184,
+            "web_search": 0.032902040637315264,
+            "open_url": 0.05298593442852586,
+            "calc": 0.0015515392242561323,
+            "convert": 0.0015078236161714502,
+            "copy_result": 0.002779037425851178,
+            "paste_plain": 0.031934762998424196,
+            "send_to_agent": 0.01209374113158012,
+            "summarise_clipboard": 0.007289644953359939,
+            "rename_file": 0.002103074773320864,
+            "move_to_folder": 0.002685655764019536,
+            "kill_process": 0.0020440473609289567,
+            "toggle_wifi": 0.0015015040648821121,
+            "lock_screen": 0.001902430135645507,
+            "screenshot_region": 0.0026743767586781732,
+            "switch_workspace": 0.007018547593330308,
+            "open_project": 0.022309913467944652,
+            "run_shell": 0.0055879601565928015,
+            "define_word": 0.005752534734744214,
+            "translate_clipboard": 0.004442854711741468,
+            "set_timer": 0.002064277812100152,
+            "note_to_inbox": 0.0025308540045959746,
+            "search_notes": 0.005273009957049941,
+            "media_play_pause": 0.0016535166005595195,
+            "volume_up": 0.001633607438521413,
+            "volume_down": 0.001661521418474773,
+            "ssh_to_host": 0.007245778597289747,
+            "clef_status": 0.003001507831118271,
+            "other": 0.015760299516520995
+          },
+          "confidence": 0.6605893022213285,
+          "band": "confirm",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.02250500913525328,
+          "confidence": 0.9774949908647467,
+          "probabilities": {
+            "false": 0.9774949908647467,
+            "true": 0.02250500913525328
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.0025687712932984264,
+          "confidence": 0.9974312287067015,
+          "probabilities": {
+            "false": 0.9974312287067015,
+            "true": 0.0025687712932984264
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.029466951824354774,
+          "confidence": 0.9705330481756452,
+          "probabilities": {
+            "false": 0.9705330481756452,
+            "true": 0.029466951824354774
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.061809858705243574,
+          "confidence": 0.9381901412947564,
+          "probabilities": {
+            "false": 0.9381901412947564,
+            "true": 0.061809858705243574
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.028943640927635426,
+          "confidence": 0.9710563590723645,
+          "probabilities": {
+            "false": 0.9710563590723645,
+            "true": 0.028943640927635426
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.025028609836011587,
+          "confidence": 0.9749713901639884,
+          "probabilities": {
+            "false": 0.9749713901639884,
+            "true": 0.025028609836011587
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.6553743634179837,
+          "probabilities": {
+            "0": 0.40182498301226616,
+            "1": 0.5409756705574839,
+            "2": 0.05719934643024994
+          },
+          "confidence": 0.31146350583622584,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "confirm",
+      "args": {
+        "appId": "firefox.desktop"
+      }
+    },
+    {
+      "input": "Firefox",
+      "expected": "open_app",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "open_app",
+          "probabilities": {
+            "open_app": 0.33390893463598476,
+            "open_file": 0.03637942911588519,
+            "open_recent": 0.057111417447204806,
+            "web_search": 0.12397892785464575,
+            "open_url": 0.07091664890474003,
+            "calc": 0.0008230054408641623,
+            "convert": 0.000842756702938093,
+            "copy_result": 0.013254438903206083,
+            "paste_plain": 0.12575091222106416,
+            "send_to_agent": 0.04342660667327717,
+            "summarise_clipboard": 0.022404915787641148,
+            "rename_file": 0.0012910591482669786,
+            "move_to_folder": 0.0024152944311018887,
+            "kill_process": 0.015549950551953663,
+            "toggle_wifi": 0.0009110452308590566,
+            "lock_screen": 0.00194809280849146,
+            "screenshot_region": 0.011898278685904741,
+            "switch_workspace": 0.012593140543390093,
+            "open_project": 0.027427953638484385,
+            "run_shell": 0.005080161874292649,
+            "define_word": 0.01820088078465847,
+            "translate_clipboard": 0.0086703325317248,
+            "set_timer": 0.0014448934714278,
+            "note_to_inbox": 0.006140090029666993,
+            "search_notes": 0.013444040698415422,
+            "media_play_pause": 0.001206081051010453,
+            "volume_up": 0.0009081193405048099,
+            "volume_down": 0.0008817921583332756,
+            "ssh_to_host": 0.007675906951764412,
+            "clef_status": 0.004698245020232212,
+            "other": 0.028816647362065254
+          },
+          "confidence": 0.3117058991238509,
+          "band": "fallback",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.04132134576030237,
+          "confidence": 0.9586786542396977,
+          "probabilities": {
+            "false": 0.9586786542396977,
+            "true": 0.04132134576030237
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.002951426960058613,
+          "confidence": 0.9970485730399414,
+          "probabilities": {
+            "false": 0.9970485730399414,
+            "true": 0.002951426960058613
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.05352943569104545,
+          "confidence": 0.9464705643089546,
+          "probabilities": {
+            "false": 0.9464705643089546,
+            "true": 0.05352943569104545
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.18733239481119507,
+          "confidence": 0.8126676051888049,
+          "probabilities": {
+            "false": 0.8126676051888049,
+            "true": 0.18733239481119507
+          },
+          "band": "confirm",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.05702041170606607,
+          "confidence": 0.9429795882939339,
+          "probabilities": {
+            "false": 0.9429795882939339,
+            "true": 0.05702041170606607
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.09558196422055233,
+          "confidence": 0.9044180357794477,
+          "probabilities": {
+            "false": 0.9044180357794477,
+            "true": 0.09558196422055233
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.4589062931641176,
+          "probabilities": {
+            "0": 0.5645498260863672,
+            "1": 0.41199405466314787,
+            "2": 0.02345611925048485
+          },
+          "confidence": 0.3116405602538236,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "fallback",
+      "args": {
+        "appId": "firefox.desktop"
+      }
+    },
+    {
+      "input": "set up Firefox",
+      "expected": "send_to_agent",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "send_to_agent",
+          "probabilities": {
+            "open_app": 0.24979817792677264,
+            "open_file": 0.012861590747134903,
+            "open_recent": 0.010150027831418464,
+            "web_search": 0.030980316439870453,
+            "open_url": 0.017086305187731732,
+            "calc": 0.0006111566914876538,
+            "convert": 0.0005837306617928078,
+            "copy_result": 0.0013664416422890903,
+            "paste_plain": 0.01964453364607346,
+            "send_to_agent": 0.5826674371792444,
+            "summarise_clipboard": 0.003881030589233245,
+            "rename_file": 0.0007095108231758084,
+            "move_to_folder": 0.0022356408806700504,
+            "kill_process": 0.002482979595935438,
+            "toggle_wifi": 0.0007652343274126394,
+            "lock_screen": 0.0008837877745570114,
+            "screenshot_region": 0.0013437794759861518,
+            "switch_workspace": 0.005360544956159352,
+            "open_project": 0.010059987385352024,
+            "run_shell": 0.0050684371030374755,
+            "define_word": 0.0023966336268806234,
+            "translate_clipboard": 0.0013072571445638887,
+            "set_timer": 0.0010054715369938714,
+            "note_to_inbox": 0.0020790421944079014,
+            "search_notes": 0.002078637261419654,
+            "media_play_pause": 0.0006355190732857894,
+            "volume_up": 0.0006017395426485482,
+            "volume_down": 0.0005917481004336912,
+            "ssh_to_host": 0.005255317497788064,
+            "clef_status": 0.002695699994435799,
+            "other": 0.02281228316180722
+          },
+          "confidence": 0.5687563517518859,
+          "band": "fallback",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.011424013486517734,
+          "confidence": 0.9885759865134822,
+          "probabilities": {
+            "false": 0.9885759865134822,
+            "true": 0.011424013486517734
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.0027683137732439174,
+          "confidence": 0.9972316862267561,
+          "probabilities": {
+            "false": 0.9972316862267561,
+            "true": 0.0027683137732439174
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.02004468978298991,
+          "confidence": 0.9799553102170101,
+          "probabilities": {
+            "false": 0.9799553102170101,
+            "true": 0.02004468978298991
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.056464008235634945,
+          "confidence": 0.9435359917643651,
+          "probabilities": {
+            "false": 0.9435359917643651,
+            "true": 0.056464008235634945
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.04775093336639859,
+          "confidence": 0.9522490666336014,
+          "probabilities": {
+            "false": 0.9522490666336014,
+            "true": 0.04775093336639859
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.11006482925720021,
+          "confidence": 0.8899351707427998,
+          "probabilities": {
+            "false": 0.8899351707427998,
+            "true": 0.11006482925720021
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.6477054081781726,
+          "probabilities": {
+            "0": 0.41613763561404515,
+            "1": 0.5200193205937371,
+            "2": 0.06384304379221775
+          },
+          "confidence": 0.2800289808906057,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "fallback",
+      "args": {
+        "input": "set up Firefox"
+      }
+    },
+    {
+      "input": "open transcription-notes.txt",
+      "expected": "open_file",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "open_file",
+          "probabilities": {
+            "open_app": 0.0068888434327686685,
+            "open_file": 0.9157921873688893,
+            "open_recent": 0.008261296234636412,
+            "web_search": 0.0025366976121899026,
+            "open_url": 0.0037313870609459896,
+            "calc": 0.0012968118833210087,
+            "convert": 0.0012854315777113695,
+            "copy_result": 0.0018400265733779539,
+            "paste_plain": 0.004799305086165265,
+            "send_to_agent": 0.0032250161416180114,
+            "summarise_clipboard": 0.002284954471917932,
+            "rename_file": 0.0021347368815191723,
+            "move_to_folder": 0.0022271585775640677,
+            "kill_process": 0.0014227548555253002,
+            "toggle_wifi": 0.001082343849971449,
+            "lock_screen": 0.0013339275039548888,
+            "screenshot_region": 0.0015059932046411076,
+            "switch_workspace": 0.002131297044156452,
+            "open_project": 0.009110360448667731,
+            "run_shell": 0.0022185137921250514,
+            "define_word": 0.0014477360885388822,
+            "translate_clipboard": 0.0018882731506641357,
+            "set_timer": 0.0013084613905083799,
+            "note_to_inbox": 0.002770736703095042,
+            "search_notes": 0.005517664017916344,
+            "media_play_pause": 0.0012901402165022655,
+            "volume_up": 0.0012687976415895396,
+            "volume_down": 0.001420141939518517,
+            "ssh_to_host": 0.0025548919106837724,
+            "clef_status": 0.0015019434723965964,
+            "other": 0.003922169866919571
+          },
+          "confidence": 0.9129852602811857,
+          "band": "act",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.7643989746757752,
+          "confidence": 0.7643989746757752,
+          "probabilities": {
+            "false": 0.23560102532422478,
+            "true": 0.7643989746757752
+          },
+          "band": "confirm",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.0026968915117390043,
+          "confidence": 0.997303108488261,
+          "probabilities": {
+            "false": 0.997303108488261,
+            "true": 0.0026968915117390043
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.015454281472682255,
+          "confidence": 0.9845457185273178,
+          "probabilities": {
+            "false": 0.9845457185273178,
+            "true": 0.015454281472682255
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.038642609692570405,
+          "confidence": 0.9613573903074296,
+          "probabilities": {
+            "false": 0.9613573903074296,
+            "true": 0.038642609692570405
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.03714322178842295,
+          "confidence": 0.962856778211577,
+          "probabilities": {
+            "false": 0.962856778211577,
+            "true": 0.03714322178842295
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.04609812146985887,
+          "confidence": 0.9539018785301411,
+          "probabilities": {
+            "false": 0.9539018785301411,
+            "true": 0.04609812146985887
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.6856731380989614,
+          "probabilities": {
+            "0": 0.3556465199623868,
+            "1": 0.6030338219762651,
+            "2": 0.04131965806134813
+          },
+          "confidence": 0.4045507329643976,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "act",
+      "args": {
+        "file": "/home/synthetic/Documents/transcription-notes.txt"
+      }
+    },
+    {
+      "input": "set a timer for 5 minutes",
+      "expected": "set_timer",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "set_timer",
+          "probabilities": {
+            "open_app": 0.003203946928913487,
+            "open_file": 0.0011502013081636105,
+            "open_recent": 0.001108185650585376,
+            "web_search": 0.0014874266902175145,
+            "open_url": 0.0011717326594941275,
+            "calc": 0.0009387029377208929,
+            "convert": 0.0008799534754919192,
+            "copy_result": 0.0009999843181486747,
+            "paste_plain": 0.0010275843598735678,
+            "send_to_agent": 0.0026933599523224203,
+            "summarise_clipboard": 0.001098815838716441,
+            "rename_file": 0.001120230540865066,
+            "move_to_folder": 0.0012427707765210992,
+            "kill_process": 0.0012340200017036094,
+            "toggle_wifi": 0.0009168481670163135,
+            "lock_screen": 0.0011026768281568763,
+            "screenshot_region": 0.0011796242972004225,
+            "switch_workspace": 0.0009512025331729159,
+            "open_project": 0.0013744357532382713,
+            "run_shell": 0.0013267268546183612,
+            "define_word": 0.0011817265009393177,
+            "translate_clipboard": 0.00091451437635747,
+            "set_timer": 0.9620107658232222,
+            "note_to_inbox": 0.0009884401904005351,
+            "search_notes": 0.0009703449716634883,
+            "media_play_pause": 0.00099085868502758,
+            "volume_up": 0.0008664647442036294,
+            "volume_down": 0.0009274535554053705,
+            "ssh_to_host": 0.0014592924218304844,
+            "clef_status": 0.0011331468928816417,
+            "other": 0.0023485619659275527
+          },
+          "confidence": 0.9607444580173297,
+          "band": "act",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.008060133727364853,
+          "confidence": 0.9919398662726352,
+          "probabilities": {
+            "false": 0.9919398662726352,
+            "true": 0.008060133727364853
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.0044061199607908184,
+          "confidence": 0.9955938800392092,
+          "probabilities": {
+            "false": 0.9955938800392092,
+            "true": 0.0044061199607908184
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.0056616380962404515,
+          "confidence": 0.9943383619037596,
+          "probabilities": {
+            "false": 0.9943383619037596,
+            "true": 0.0056616380962404515
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.006648498100153979,
+          "confidence": 0.993351501899846,
+          "probabilities": {
+            "false": 0.993351501899846,
+            "true": 0.006648498100153979
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.047726491321599514,
+          "confidence": 0.9522735086784004,
+          "probabilities": {
+            "false": 0.9522735086784004,
+            "true": 0.047726491321599514
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.01821063176488516,
+          "confidence": 0.9817893682351149,
+          "probabilities": {
+            "false": 0.9817893682351149,
+            "true": 0.01821063176488516
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.7090655146603195,
+          "probabilities": {
+            "0": 0.44064123262051186,
+            "1": 0.4096520200986568,
+            "2": 0.14970674728083136
+          },
+          "confidence": 0,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "act",
+      "args": {
+        "seconds": 300
+      }
+    },
+    {
+      "input": "define transcription",
+      "expected": "define_word",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "define_word",
+          "probabilities": {
+            "open_app": 0.013616246920351184,
+            "open_file": 0.004781205397531463,
+            "open_recent": 0.0033602955604007494,
+            "web_search": 0.03462175305053076,
+            "open_url": 0.003033322860800734,
+            "calc": 0.0006501144284710787,
+            "convert": 0.0006584119696439027,
+            "copy_result": 0.003961310668461636,
+            "paste_plain": 0.004881315927218255,
+            "send_to_agent": 0.023315099819195634,
+            "summarise_clipboard": 0.005538263931063932,
+            "rename_file": 0.0006806685241203484,
+            "move_to_folder": 0.0006779165721418452,
+            "kill_process": 0.0006476595452707526,
+            "toggle_wifi": 0.0006249695890042695,
+            "lock_screen": 0.0007896002203657513,
+            "screenshot_region": 0.0010931001377094778,
+            "switch_workspace": 0.0010249803238583772,
+            "open_project": 0.003984643756951019,
+            "run_shell": 0.001310673523752608,
+            "define_word": 0.8627841748689554,
+            "translate_clipboard": 0.00283092724728557,
+            "set_timer": 0.0006695440112181844,
+            "note_to_inbox": 0.0024192437524112914,
+            "search_notes": 0.006868453452974217,
+            "media_play_pause": 0.0008098675065794964,
+            "volume_up": 0.0006179135398705699,
+            "volume_down": 0.0006122103723834324,
+            "ssh_to_host": 0.001592533689687879,
+            "clef_status": 0.0017660250068394052,
+            "other": 0.009777553824950585
+          },
+          "confidence": 0.8582103140312539,
+          "band": "act",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.016304401266491964,
+          "confidence": 0.9836955987335081,
+          "probabilities": {
+            "false": 0.9836955987335081,
+            "true": 0.016304401266491964
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.0033501742363376227,
+          "confidence": 0.9966498257636623,
+          "probabilities": {
+            "false": 0.9966498257636623,
+            "true": 0.0033501742363376227
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.016215714713517397,
+          "confidence": 0.9837842852864827,
+          "probabilities": {
+            "false": 0.9837842852864827,
+            "true": 0.016215714713517397
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.015582151428295549,
+          "confidence": 0.9844178485717044,
+          "probabilities": {
+            "false": 0.9844178485717044,
+            "true": 0.015582151428295549
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.6213525553131728,
+          "confidence": 0.6213525553131728,
+          "probabilities": {
+            "false": 0.3786474446868272,
+            "true": 0.6213525553131728
+          },
+          "band": "confirm",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.05839998964442984,
+          "confidence": 0.9416000103555702,
+          "probabilities": {
+            "false": 0.9416000103555702,
+            "true": 0.05839998964442984
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.17949168296426177,
+          "probabilities": {
+            "0": 0.8266673181320882,
+            "1": 0.16717368077156186,
+            "2": 0.006159001096349946
+          },
+          "confidence": 0.7307624755536073,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "confirm",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "act",
+      "args": {
+        "input": "define transcription"
+      }
+    },
+    {
+      "input": "summarise clipboard",
+      "expected": "summarise_clipboard",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "summarise_clipboard",
+          "probabilities": {
+            "open_app": 0.003481426433336863,
+            "open_file": 0.0032534406834113017,
+            "open_recent": 0.003635976372265981,
+            "web_search": 0.0027426191992842414,
+            "open_url": 0.0019580419210527243,
+            "calc": 0.001905421506141998,
+            "convert": 0.002021567127768617,
+            "copy_result": 0.0031485934392917725,
+            "paste_plain": 0.005199585857317379,
+            "send_to_agent": 0.006703194295482234,
+            "summarise_clipboard": 0.9178618178927286,
+            "rename_file": 0.0015987581521119468,
+            "move_to_folder": 0.0018035463431208957,
+            "kill_process": 0.002428251872074984,
+            "toggle_wifi": 0.001567542337587684,
+            "lock_screen": 0.0019078544067992844,
+            "screenshot_region": 0.0021314549082059884,
+            "switch_workspace": 0.0020169915837008633,
+            "open_project": 0.003275724388910213,
+            "run_shell": 0.00204721064725087,
+            "define_word": 0.0021721658270886348,
+            "translate_clipboard": 0.004429046443056302,
+            "set_timer": 0.0023509402206875053,
+            "note_to_inbox": 0.0021679336585882,
+            "search_notes": 0.0028238805554277654,
+            "media_play_pause": 0.0018411458786411563,
+            "volume_up": 0.001833830639110987,
+            "volume_down": 0.0019684518743380433,
+            "ssh_to_host": 0.002181443289901499,
+            "clef_status": 0.002046554755277622,
+            "other": 0.005495587490037955
+          },
+          "confidence": 0.9151238784891529,
+          "band": "act",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.020678519430385366,
+          "confidence": 0.9793214805696147,
+          "probabilities": {
+            "false": 0.9793214805696147,
+            "true": 0.020678519430385366
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.003771292088023141,
+          "confidence": 0.9962287079119768,
+          "probabilities": {
+            "false": 0.9962287079119768,
+            "true": 0.003771292088023141
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.004667917748640214,
+          "confidence": 0.9953320822513598,
+          "probabilities": {
+            "false": 0.9953320822513598,
+            "true": 0.004667917748640214
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.017470399228665102,
+          "confidence": 0.9825296007713349,
+          "probabilities": {
+            "false": 0.9825296007713349,
+            "true": 0.017470399228665102
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.24321365893045024,
+          "confidence": 0.7567863410695498,
+          "probabilities": {
+            "false": 0.7567863410695498,
+            "true": 0.24321365893045024
+          },
+          "band": "confirm",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.025590829664120365,
+          "confidence": 0.9744091703358796,
+          "probabilities": {
+            "false": 0.9744091703358796,
+            "true": 0.025590829664120365
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.5128495868195931,
+          "probabilities": {
+            "0": 0.5321241235885243,
+            "1": 0.4229021660033581,
+            "2": 0.04497371040811749
+          },
+          "confidence": 0.23072561977061024,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "act",
+      "args": {}
+    },
+    {
+      "input": "run printf hello",
+      "expected": "run_shell",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "run_shell",
+          "probabilities": {
+            "open_app": 0.03509986866505147,
+            "open_file": 0.01111798801738419,
+            "open_recent": 0.006711288506824471,
+            "web_search": 0.017223760978651585,
+            "open_url": 0.009986098363564651,
+            "calc": 0.002114956858400445,
+            "convert": 0.0015331249327971543,
+            "copy_result": 0.008978957937723896,
+            "paste_plain": 0.013139457252084017,
+            "send_to_agent": 0.020548825644019282,
+            "summarise_clipboard": 0.004156574135510872,
+            "rename_file": 0.0013901849399811897,
+            "move_to_folder": 0.0016568687935177662,
+            "kill_process": 0.0019280468615604355,
+            "toggle_wifi": 0.0014253492292388354,
+            "lock_screen": 0.002043085849439605,
+            "screenshot_region": 0.003992968125407754,
+            "switch_workspace": 0.004811411884154465,
+            "open_project": 0.014316541064077443,
+            "run_shell": 0.7623363287555253,
+            "define_word": 0.001984343168777516,
+            "translate_clipboard": 0.002265075041417471,
+            "set_timer": 0.001985103119732604,
+            "note_to_inbox": 0.00272831069053596,
+            "search_notes": 0.006155029628115747,
+            "media_play_pause": 0.0017686738293219246,
+            "volume_up": 0.0013953431669663022,
+            "volume_down": 0.0014079979722895477,
+            "ssh_to_host": 0.016071394748042332,
+            "clef_status": 0.0025669428914659544,
+            "other": 0.037160098948420005
+          },
+          "confidence": 0.7544142063807094,
+          "band": "confirm",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.008891010997799927,
+          "confidence": 0.9911089890022001,
+          "probabilities": {
+            "false": 0.9911089890022001,
+            "true": 0.008891010997799927
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.0033119983249303097,
+          "confidence": 0.9966880016750697,
+          "probabilities": {
+            "false": 0.9966880016750697,
+            "true": 0.0033119983249303097
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.012214961489120699,
+          "confidence": 0.9877850385108793,
+          "probabilities": {
+            "false": 0.9877850385108793,
+            "true": 0.012214961489120699
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.018731754564254667,
+          "confidence": 0.9812682454357453,
+          "probabilities": {
+            "false": 0.9812682454357453,
+            "true": 0.018731754564254667
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.02909586185653455,
+          "confidence": 0.9709041381434654,
+          "probabilities": {
+            "false": 0.9709041381434654,
+            "true": 0.02909586185653455
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.2355067260313966,
+          "confidence": 0.7644932739686034,
+          "probabilities": {
+            "false": 0.7644932739686034,
+            "true": 0.2355067260313966
+          },
+          "band": "confirm",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.3317894161400453,
+          "probabilities": {
+            "0": 0.6921772050209818,
+            "1": 0.2838561738179911,
+            "2": 0.02396662116102709
+          },
+          "confidence": 0.502315875789932,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "confirm",
+      "args": {
+        "input": "run printf hello"
+      }
+    },
+    {
+      "input": "lock screen",
+      "expected": "lock_screen",
+      "answers": {
+        "action": {
+          "type": "choice",
+          "choice": "lock_screen",
+          "probabilities": {
+            "open_app": 0.010078756738004874,
+            "open_file": 0.005371567602660757,
+            "open_recent": 0.006412297184659544,
+            "web_search": 0.006650122693018064,
+            "open_url": 0.004038357808561209,
+            "calc": 0.00214435273686291,
+            "convert": 0.0020697638131063345,
+            "copy_result": 0.004978554550575864,
+            "paste_plain": 0.006644447394733495,
+            "send_to_agent": 0.007304310825920551,
+            "summarise_clipboard": 0.003618246900873817,
+            "rename_file": 0.002302981388576322,
+            "move_to_folder": 0.0030022535580409696,
+            "kill_process": 0.0068802206432749535,
+            "toggle_wifi": 0.002338789667279475,
+            "lock_screen": 0.870284743497339,
+            "screenshot_region": 0.006268468422498148,
+            "switch_workspace": 0.003613622564806757,
+            "open_project": 0.005740750383723213,
+            "run_shell": 0.00274359499713688,
+            "define_word": 0.003464804108093256,
+            "translate_clipboard": 0.0030225040484368484,
+            "set_timer": 0.002777819847315379,
+            "note_to_inbox": 0.0031487571135740545,
+            "search_notes": 0.003207853663475543,
+            "media_play_pause": 0.002278585505986116,
+            "volume_up": 0.0018640598491559094,
+            "volume_down": 0.0019638027153428186,
+            "ssh_to_host": 0.004190788281868645,
+            "clef_status": 0.003718702666303055,
+            "other": 0.007876118828794654
+          },
+          "confidence": 0.8659609016139169,
+          "band": "act",
+          "branch": "launcher.action"
+        },
+        "is_file_search": {
+          "type": "noul",
+          "p": 0.009282031387720565,
+          "confidence": 0.9907179686122795,
+          "probabilities": {
+            "false": 0.9907179686122795,
+            "true": 0.009282031387720565
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_file_search"
+        },
+        "is_calc": {
+          "type": "noul",
+          "p": 0.002463217359594649,
+          "confidence": 0.9975367826404054,
+          "probabilities": {
+            "false": 0.9975367826404054,
+            "true": 0.002463217359594649
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_calc"
+        },
+        "is_url": {
+          "type": "noul",
+          "p": 0.008044985024348469,
+          "confidence": 0.9919550149756515,
+          "probabilities": {
+            "false": 0.9919550149756515,
+            "true": 0.008044985024348469
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_url"
+        },
+        "wants_paste": {
+          "type": "noul",
+          "p": 0.031094977122219453,
+          "confidence": 0.9689050228777806,
+          "probabilities": {
+            "false": 0.9689050228777806,
+            "true": 0.031094977122219453
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.wants_paste"
+        },
+        "is_question": {
+          "type": "noul",
+          "p": 0.029134344262715564,
+          "confidence": 0.9708656557372844,
+          "probabilities": {
+            "false": 0.9708656557372844,
+            "true": 0.029134344262715564
+          },
+          "band": "act",
+          "branch": "launcher.keystroke.is_question"
+        },
+        "is_gibberish": {
+          "type": "noul",
+          "p": 0.03882402521215704,
+          "confidence": 0.961175974787843,
+          "probabilities": {
+            "false": 0.961175974787843,
+            "true": 0.03882402521215704
+          },
+          "band": "act",
+          "branch": "launcher.gibberish"
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.5180329881523666,
+          "probabilities": {
+            "0": 0.6201851241301021,
+            "1": 0.24159676358742935,
+            "2": 0.13821811228246864
+          },
+          "confidence": 0.22295051777145003,
+          "legend": {
+            "0": "not urgent",
+            "1": "normal",
+            "2": "urgent"
+          },
+          "band": "fallback",
+          "branch": "launcher.keystroke.urgency"
+        }
+      },
+      "status": "ready",
+      "band": "act",
+      "args": {}
+    }
+  ]
+}

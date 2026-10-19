@@ -1,0 +1,48 @@
+[package]
+name = "soft-launcher"
+version = "0.1.0"
+edition = "2024"
+description = "Native context and execution backend for soft-launcher"
+
+[lib]
+name = "soft_launcher"
+path = "src/lib.rs"
+
+[[bin]]
+name = "soft-launcher"
+path = "src/main.rs"
+required-features = ["desktop"]
+
+[features]
+default = []
+custom-protocol = ["desktop", "tauri/custom-protocol"]
+desktop = ["dep:tauri", "dep:tauri-plugin-single-instance", "dep:gtk", "dep:libloading"]
+
+[dependencies]
+base64 = "0.22"
+png = "0.18"
+chrono = "0.4"
+ignore = "0.4"
+meval = "0.2"
+nucleo-matcher = "0.3"
+roxmltree = "0.21"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+toml = "0.8"
+url = "2"
+uuid = { version = "1", features = ["v4"] }
+tauri = { version = "2", optional = true , features = [] }
+tauri-plugin-single-instance = { version = "2", optional = true }
+
+# Layer-shell overlay (src/layer_shell.rs). Same gtk as Tauri's; the library itself
+# is opened at runtime, so building needs no gtk-layer-shell.
+[target.'cfg(target_os = "linux")'.dependencies]
+gtk = { version = "0.18", optional = true }
+libloading = { version = "0.7", optional = true }
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dev-dependencies]
+tempfile = "3"

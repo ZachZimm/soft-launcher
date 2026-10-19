@@ -1,0 +1,49 @@
+node_modules/
+dist/
+target/
+src-tauri/gen/
+*.db
+*.db-journal
+policy.local.json
+catalogue.local.toml
+.env
+
+# Local credentials, caches and runtime databases.
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+*.log
+
+# Generated validation captures and local installation records remain private.
+/HERMES-CODEX-INSTALL.json
+/STARTUP-VALIDATION.json
+/scripts/*.json
+/scripts/fixtures/routing-*.json
+!/scripts/fixtures/routing-baseline-questions.json
+!/scripts/fixtures/routing-live-regressions.json
+/bench/*-results.json
+/bench/layla-wire-requests.json
+/bench/layla-truncation.json
+/src-tauri/*.json
+!/src-tauri/tauri.conf.json
+/src-tauri/*-build-logs/
+/src-tauri/visual-qa/**
+
+# Track the Hermes patch and provenance, not packaged binaries.
+/external/hermes-desktop/candidate-release/
+/external/hermes-desktop/deployment-*.json
+/external/launcher-ui-frozen.sha256
+/external/launcher-ui-base/
+
+# Private historical notes, transcripts, local manifests and publication evidence.
+/.private-archive/
+/publication-audit*.json
+/external/hermes-desktop/MANIFEST.local.json
+
+# Local exact-origin CSP overrides and service build inputs.
+/src-tauri/tauri.*.local.json

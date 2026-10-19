@@ -1,0 +1,10 @@
+{
+  "bands": { "act": 0.85, "confirm": 0.6 },
+  "branches": {
+    "launcher.action": { "act": 0.85, "confirm": 0.6, "fallback": "other" },
+    "launcher.file": { "act": 0.8, "confirm": 0.6 },
+    "launcher.gibberish": { "threshold": 0.7, "fallback": false },
+    "launcher.shell": { "act": 1, "confirm": 0, "fallback": false }
+  },
+  "allowEmulated": false
+}

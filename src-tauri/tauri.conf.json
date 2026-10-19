@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "soft-launcher",
+  "version": "0.1.0",
+  "identifier": "local.system1.soft-launcher",
+  "build": {
+    "devUrl": "http://127.0.0.1:5173",
+    "frontendDist": "../dist",
+    "features": ["desktop"]
+  },
+  "app": {
+    "windows": [{
+      "label": "main",
+      "title": "soft-launcher",
+      "width": 760,
+      "height": 232,
+      "center": true,
+      "decorations": false,
+      "transparent": false,
+      "backgroundColor": "#282828",
+      "alwaysOnTop": true,
+      "skipTaskbar": true,
+      "resizable": true,
+      "visible": false
+    }],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src ipc: http://ipc.localhost http://127.0.0.1:11434 http://localhost:11434 http://127.0.0.1:7331 http://localhost:7331; object-src 'none'; base-uri 'self'; frame-src 'none'",
+      "devCsp": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src ipc: http://ipc.localhost http://localhost:5173 ws://localhost:5173 http://127.0.0.1:5173 ws://127.0.0.1:5173 http://127.0.0.1:11434 http://localhost:11434 http://127.0.0.1:7331 http://localhost:7331; object-src 'none'; base-uri 'self'; frame-src 'none'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["deb", "appimage"],
+    "resources": { "../catalogue.toml": "catalogue.toml" },
+    "linux": { "deb": { "depends": ["libwebkit2gtk-4.1-0", "libgtk-3-0"] } }
+  }
+}

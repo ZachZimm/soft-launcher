@@ -1,0 +1,13 @@
+base_commit 7cdc6a73388356e9eaa5122b010dc20b9179170c
+captured_utc 2026-10-18T16:52:49Z
+fb38be2c6ded9f5b1a380cb7abb61204b601e9673359ada030403fef39a2a70f  hermes_cli/subcommands/gui.py
+4437403d2907e2e9318b935fb6b6e7128771978aaf79d4038297e5cd552916b8  hermes_cli/main_desktop.py
+696ebd8bfec3161019630aff0cf34b15f2bdf961c7e29edbe6a9d761ef598627  apps/desktop/electron/main.ts
+35c4224ef207c1205cc86d109f998180e30c49d187c164d57ed6faacf90cf8e9  apps/desktop/electron/preload.ts
+b0361e5e9fb6bbfb3a280ec3ad1554c3586b1b292ed86f466fe454635ed6ff4a  apps/desktop/src/global.d.ts
+1b72514018d039fb4356a90010f89bcd693a0bbee266d638a95dec2843720307  apps/desktop/src/app/contrib/wiring.tsx
+ce8b8b7d81ecbfdfa39fde17f6f8cbffce71f9c5a7b4b2abf198993ccd1e06eb  apps/desktop/src/app/session/hooks/use-prompt-actions/utils.ts
+298468244aa50e1d60fafe1e048c31dd356c85437f011ca8e188dd6fc0e93c41  apps/desktop/src/app/session/hooks/use-prompt-actions/submit.ts
+cbf6eb2ec0e20a6dabe7176362b17b11aa9919cba15e3745711923939ce6bfb0  apps/desktop/src/app/session/hooks/use-prompt-actions/index.ts
+fcd153e9d0e7504556ff6192614b4afd05f06d39b016b9682222877c1055de3b  apps/desktop/src/app/session/hooks/use-session-actions/index.ts
+c786701c87977bb68f304aacd0d26055c356ae5aa5d6f584881d5831f07ba5df  apps/desktop/src/app/session/hooks/use-prompt-actions/index.test.tsx

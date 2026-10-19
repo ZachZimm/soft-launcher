@@ -1,0 +1,156 @@
+# Reviewed native action catalogue. No model-generated command programs.
+
+[[action]]
+id = "open_app"
+description = "Launch an installed desktop application"
+exec = { kind = "app", arg = "app" }
+
+[[action]]
+id = "open_file"
+description = "Open a local file by name"
+exec = { kind = "xdg-open", arg = "file" }
+
+[[action]]
+id = "open_recent"
+description = "Open a recently used file"
+exec = { kind = "xdg-open", arg = "file" }
+
+[[action]]
+id = "web_search"
+description = "Search the web for the user input"
+exec = { kind = "builtin", name = "web_search", arg = "input" }
+
+[[action]]
+id = "open_url"
+description = "Open an explicit HTTP or HTTPS URL"
+exec = { kind = "xdg-open", arg = "url" }
+
+[[action]]
+id = "calc"
+description = "Evaluate a bounded arithmetic expression"
+exec = { kind = "builtin", name = "calc", arg = "expr" }
+
+[[action]]
+id = "convert"
+description = "Convert a number between compatible units"
+exec = { kind = "builtin", name = "convert", arg = "input" }
+
+[[action]]
+id = "copy_result"
+description = "Copy the displayed result as plain text"
+exec = { kind = "builtin", name = "copy_result", arg = "text" }
+
+[[action]]
+id = "paste_plain"
+description = "Paste the clipboard as plain text into the original app, after confirmation"
+exec = { kind = "builtin", name = "paste_plain", arg = "clipboard" }
+
+[[action]]
+id = "send_to_agent"
+description = "Send the typed request to the local Hermes agent on this computer, after confirmation"
+exec = { kind = "hermes", arg = "input" }
+
+[[action]]
+id = "summarise_clipboard"
+description = "Summarise clipboard text using Codex on lab"
+exec = { kind = "codex", arg = "clipboard", template = "summarize" }
+
+[[action]]
+id = "rename_file"
+description = "Rename a selected local file after confirmation"
+exec = { kind = "builtin", name = "rename_file", arg = "file" }
+
+[[action]]
+id = "move_to_folder"
+description = "Move a selected local file into a folder after confirmation"
+exec = { kind = "builtin", name = "move_file", arg = "file" }
+
+[[action]]
+id = "kill_process"
+description = "Terminate a process with an exact name after confirmation"
+exec = { kind = "builtin", name = "kill_process", arg = "process" }
+
+[[action]]
+id = "toggle_wifi"
+description = "Toggle Wi-Fi radio on or off after confirmation"
+exec = { kind = "builtin", name = "toggle_wifi", arg = "none" }
+
+[[action]]
+id = "lock_screen"
+description = "Lock the current desktop session"
+exec = { kind = "builtin", name = "lock_screen", arg = "none" }
+
+[[action]]
+id = "screenshot_region"
+description = "Select a region of the screen for a screenshot"
+exec = { kind = "builtin", name = "screenshot_region", arg = "none" }
+
+[[action]]
+id = "switch_workspace"
+description = "Switch to a numbered Hyprland workspace"
+exec = { kind = "builtin", name = "workspace", arg = "workspace" }
+
+[[action]]
+id = "open_project"
+description = "Open a local project in the code editor"
+exec = { kind = "builtin", name = "open_editor", arg = "file" }
+
+[[action]]
+id = "run_shell"
+description = "Run an explicit user-entered shell one-liner only after a second confirmation"
+exec = { kind = "shell", arg = "input" }
+
+[[action]]
+id = "define_word"
+description = "Look up the meaning of a word on the web"
+exec = { kind = "builtin", name = "define_word", arg = "input" }
+
+[[action]]
+id = "translate_clipboard"
+description = "Translate clipboard text into English using Codex on lab"
+exec = { kind = "codex", arg = "clipboard", template = "translate" }
+
+[[action]]
+id = "set_timer"
+description = "Start a timer for a supplied duration"
+exec = { kind = "builtin", name = "timer", arg = "seconds" }
+
+[[action]]
+id = "note_to_inbox"
+description = "Append a user-written note to the local inbox"
+exec = { kind = "builtin", name = "note", arg = "input" }
+
+[[action]]
+id = "search_notes"
+description = "Search literal user text in the local notes folder"
+exec = { kind = "builtin", name = "search_notes", arg = "input" }
+
+[[action]]
+id = "media_play_pause"
+description = "Play or pause the current media player"
+exec = { kind = "builtin", name = "media_play_pause", arg = "none" }
+
+[[action]]
+id = "volume_up"
+description = "Increase output volume by five percent"
+exec = { kind = "builtin", name = "volume_up", arg = "none" }
+
+[[action]]
+id = "volume_down"
+description = "Decrease output volume by five percent"
+exec = { kind = "builtin", name = "volume_down", arg = "none" }
+
+[[action]]
+id = "ssh_to_host"
+description = "Open a terminal SSH connection to an explicit host after confirmation"
+exec = { kind = "builtin", name = "ssh", arg = "host" }
+
+[[action]]
+id = "clef_status"
+description = "Show the configured Clef decision gateway status"
+exec = { kind = "builtin", name = "clef_status", arg = "none" }
+
+[[action]]
+id = "other"
+description = "None of the listed actions fit"
+exec = { kind = "none" }

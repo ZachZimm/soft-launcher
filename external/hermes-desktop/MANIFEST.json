@@ -1,0 +1,65 @@
+{
+  "title": "Hermes Desktop launcher handoff (external patch for soft-launcher Send to agent)",
+  "upstream": "https://github.com/NousResearch/hermes-agent.git",
+  "baseCommit": "7cdc6a73388356e9eaa5122b010dc20b9179170c",
+  "patch": {
+    "file": "hermes-desktop-launcher-handoff.patch",
+    "sha256": "d253a303cd79f0e0dea5bf3120c5e104683d741683ce3ead32d8194a49712641",
+    "apply": "git -C \"$HERMES_ROOT\" apply \"$SOFT_LAUNCHER_ROOT/external/hermes-desktop/hermes-desktop-launcher-handoff.patch\""
+  },
+  "source": {
+    "before": {
+      "hermes_cli/subcommands/gui.py": "fb38be2c6ded9f5b1a380cb7abb61204b601e9673359ada030403fef39a2a70f",
+      "hermes_cli/main_desktop.py": "4437403d2907e2e9318b935fb6b6e7128771978aaf79d4038297e5cd552916b8",
+      "apps/desktop/electron/main.ts": "696ebd8bfec3161019630aff0cf34b15f2bdf961c7e29edbe6a9d761ef598627",
+      "apps/desktop/electron/preload.ts": "35c4224ef207c1205cc86d109f998180e30c49d187c164d57ed6faacf90cf8e9",
+      "apps/desktop/src/global.d.ts": "b0361e5e9fb6bbfb3a280ec3ad1554c3586b1b292ed86f466fe454635ed6ff4a",
+      "apps/desktop/src/app/contrib/wiring.tsx": "1b72514018d039fb4356a90010f89bcd693a0bbee266d638a95dec2843720307",
+      "apps/desktop/src/app/session/hooks/use-prompt-actions/utils.ts": "ce8b8b7d81ecbfdfa39fde17f6f8cbffce71f9c5a7b4b2abf198993ccd1e06eb",
+      "apps/desktop/src/app/session/hooks/use-prompt-actions/submit.ts": "298468244aa50e1d60fafe1e048c31dd356c85437f011ca8e188dd6fc0e93c41",
+      "apps/desktop/src/app/session/hooks/use-prompt-actions/index.ts": "cbf6eb2ec0e20a6dabe7176362b17b11aa9919cba15e3745711923939ce6bfb0",
+      "apps/desktop/src/app/session/hooks/use-session-actions/index.ts": "fcd153e9d0e7504556ff6192614b4afd05f06d39b016b9682222877c1055de3b",
+      "apps/desktop/src/app/session/hooks/use-prompt-actions/index.test.tsx": "c786701c87977bb68f304aacd0d26055c356ae5aa5d6f584881d5831f07ba5df"
+    },
+    "after": {
+      "hermes_cli/subcommands/gui.py": "0b00f9cc4de066329b5d7d34c0dc90c78a4d0b5ff3c22d2cb45cd61295e4a2a6",
+      "hermes_cli/main_desktop.py": "e874286f8596127820c98681eb3767f432f734f2a8aa088414f8dbb4830cbe16",
+      "apps/desktop/electron/main.ts": "f83505e3f897f467c72e5d7f6964d7a14c2b76b4ccccb8d1b89746f7516104f1",
+      "apps/desktop/electron/preload.ts": "ed19467dccb9a3a23063d0c719a005bf897a3ff125d2d097e9dd6a38a00f75bb",
+      "apps/desktop/src/global.d.ts": "a29ee67e858be2098bd93bde3c7745912193f6aacb21151e59feb109b45d634a",
+      "apps/desktop/src/app/contrib/wiring.tsx": "acbdc905920e9fcacf5f4df372e252c4302c1743a03409d443c1958ce4ef1219",
+      "apps/desktop/src/app/session/hooks/use-prompt-actions/utils.ts": "188b7ebd1fec900f1c326aef15059913f3a25d22bcbdb295f15b01a3d7ab3332",
+      "apps/desktop/src/app/session/hooks/use-prompt-actions/submit.ts": "d7985353a6f827c002e05392cf36d973e8cbe56e32f63a0794fe4e1d115d0026",
+      "apps/desktop/src/app/session/hooks/use-prompt-actions/index.ts": "9320158d3773750bd4876f65534ea890bb73605bd1ecce49bf036ea8606db9b2",
+      "apps/desktop/src/app/session/hooks/use-session-actions/index.ts": "96099b9984ec12de18e072aa7ad72a9b1f985d8685c854cbbb0c5fb534e70597",
+      "apps/desktop/src/app/session/hooks/use-prompt-actions/index.test.tsx": "293096444f6237504c66bed83a8c95414dbdeab5abb3e3a60d181404c8b0191d",
+      "apps/desktop/electron/launcher-handoff.ts": "ac05cd6d2b47a423c4f476b9250a2cd55109a71b3bfe16cf5e8062a033723eb7",
+      "apps/desktop/electron/launcher-handoff.test.ts": "9716ffa36e25dc414e1a6b3f7a95f84ff946750d323c6c197f9b21f540676647",
+      "apps/desktop/src/app/contrib/hooks/use-launcher-handoff-bridge.ts": "4167d8459ee9415053e2da11c72a350d682d329c5f520f64adc1dad53f6998ba",
+      "apps/desktop/src/lib/launcher-handoff.ts": "fc372f0fbbc490de3f374f011a00e6e131fcae98a6236b3aae818c0d626b54b0",
+      "tests/hermes_cli/test_desktop_launcher_handoff.py": "b10ed21a353a889bf8146b0a051bded89f91c9d174b50d03cd380318a69e2832"
+    },
+    "added": [
+      "apps/desktop/electron/launcher-handoff.ts",
+      "apps/desktop/electron/launcher-handoff.test.ts",
+      "apps/desktop/src/app/contrib/hooks/use-launcher-handoff-bridge.ts",
+      "apps/desktop/src/lib/launcher-handoff.ts",
+      "tests/hermes_cli/test_desktop_launcher_handoff.py"
+    ],
+    "backupDir": "base",
+    "backupsVerifiedPristineAgainstBaseCommit": true
+  },
+  "build": {
+    "workingDirectory": "apps/desktop",
+    "commands": [
+      "npm ci",
+      "npm run build",
+      "npm run builder -- --dir --publish never -c.directories.output=<candidate-directory>"
+    ]
+  },
+  "license": "LICENSE",
+  "notes": [
+    "base/ contains the pristine touched upstream files for patch review and optional source rollback.",
+    "Machine-specific package hashes, deployment baselines and acceptance records belong in ignored MANIFEST.local.json."
+  ]
+}

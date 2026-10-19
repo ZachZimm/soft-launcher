@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+runtime_dir=$(dirname "$(readlink -f "$0")")
+"$runtime_dir/graphical-ready"
+# Clear optional stale values from a previous graphical login. Import only this
+# allowlist, never shell credentials, automation flags, or LD_LIBRARY_PATH.
+names=(WAYLAND_DISPLAY DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_RUNTIME_DIR)
+present=()
+absent=()
+for name in "${names[@]}"; do
+  if [[ -v $name ]]; then present+=("$name"); else absent+=("$name"); fi
+done
+if ((${#absent[@]})); then systemctl --user unset-environment "${absent[@]}"; fi
+systemctl --user import-environment "${present[@]}"
+systemctl --user start soft-launcher.service
