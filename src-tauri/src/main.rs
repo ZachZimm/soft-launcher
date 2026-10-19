@@ -57,8 +57,23 @@ fn hidden(args: &[String]) -> bool {
 }
 
 fn main() {
+    #[cfg(target_os = "linux")]
+    let startup_guard = {
+        let args: Vec<String> = std::env::args().collect();
+        match soft_launcher::startup::acquire(hidden(&args)) {
+            Ok(guard) => std::sync::Arc::new(std::sync::Mutex::new(Some(guard))),
+            Err(error) if error.kind() == std::io::ErrorKind::WouldBlock => {
+                eprintln!("soft-launcher: update in progress; startup skipped");
+                return;
+            }
+            Err(_) => {
+                eprintln!("soft-launcher: startup guard unavailable");
+                std::process::exit(1);
+            }
+        }
+    };
     if wants_explicit_sync_workaround(|name| std::env::var_os(name)) {
-        // SAFETY: this is the first statement of main. No other thread exists yet
+        // SAFETY: startup guard acquisition starts no threads. No other thread exists yet
         // (Tauri, GTK, WebKit and our collectors all start below), so nothing can read
         // or write the environment concurrently. The change is process-local and is
         // inherited only by children; it writes no global configuration.
@@ -76,7 +91,7 @@ fn main() {
                 );
             }
         }))
-        .setup(|app| {
+        .setup(move |app| {
             let home = std::env::var_os("HOME")
                 .map(PathBuf::from)
                 .ok_or("HOME unavailable")?
@@ -132,6 +147,10 @@ fn main() {
                     }
                 }
             });
+            // Singleton registration and native setup are complete. A running
+            // launcher must not retain a shared lock and block future updates.
+            #[cfg(target_os = "linux")]
+            drop(startup_guard.lock().unwrap().take());
             Ok(())
         })
         .on_window_event(|window, event| match event {

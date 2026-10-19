@@ -1,5 +1,7 @@
 // Public synthetic inputs only. Keep the exact user regressions first.
 export const routingCases = [
+  { input: 'audiobookshelf', expected: 'web_search' },
+  { input: 'Is there a transcription server on lab?', expected: 'send_to_agent' },
   { input: 'Is there a transcription server on buildbox?', expected: 'send_to_agent' },
   { input: 'transcription model', expected: 'web_search' },
   { input: 'set up deadlock mod manager', expected: 'send_to_agent' },

@@ -213,10 +213,14 @@ export function createLauncherRuntime(options: RuntimeOptions): LauncherRuntime 
         } else if (fileBand === 'confirm' && band === 'act') band = 'confirm';
       }
       if (gibberish && action.id !== 'other' || extracted.error) band = 'fallback';
+      const directActivation = action.id === 'web_search' && action.id === leading && answer.choice === action.id
+        && action.exec.kind === 'builtin' && action.exec.name === 'web_search' && action.exec.arg === 'input'
+        && !action.requiresConfirmation && !gibberish && !extracted.error && !!extracted.args.input?.trim();
       return {
         action, probability: answer.probabilities[action.id] ?? 0,
         confidence: action.id === leading ? answer.confidence : answer.probabilities[action.id] ?? 0,
         band, args: extracted.args, ...(extracted.error ? { argumentError: extracted.error } : {}),
+        ...(directActivation ? { directActivation: true } : {}),
         ...(argumentPending ? { argumentPending: true } : {}), ...(selected ? { fileConfidence: selected.answer.confidence } : {}),
         ...(previews.has(action.id) ? { preview: previews.get(action.id)! } : {}),
       };
@@ -305,8 +309,10 @@ export function createLauncherRuntime(options: RuntimeOptions): LauncherRuntime 
       const leadingAction = state.catalogue.actions.find(action => action.id === leadingId);
       const source = leadingAction?.id.includes('recent') ? 'recent' : 'candidates';
       const files = state[source].slice(0, 5);
-      if (files.length > 1 && (leadingAction?.exec.arg === 'file' || result.is_file_search.p >= .5)) {
-        selection = await rerankFiles(state, snapshot.input, leadingAction?.exec.arg === 'file' ? leadingAction.id : 'open_file', source, tick, signal);
+      // Nonleading file actions resolve their arguments on deliberate selection.
+      // An auxiliary file signal must not delay or invalidate another action.
+      if (files.length > 1 && leadingAction?.exec.arg === 'file') {
+        selection = await rerankFiles(state, snapshot.input, leadingAction.id, source, tick, signal);
       }
       if (!current(tick)) { metrics.supersede(); return; }
       nativeState = state; fileSelection = selection; currentDecisionTick = tick; decisionInput = snapshot.input;
@@ -416,7 +422,7 @@ export function createLauncherRuntime(options: RuntimeOptions): LauncherRuntime 
       if (candidate.action.id === 'other') return response('Choose teaching to add an action');
       const primed = execution.primed && snapshot.candidates[0]?.action.id === actionId && candidate.band === 'act';
       const hold = Math.max(0, Number.isFinite(execution.hold_ms) ? execution.hold_ms : 0);
-      if (!primed && hold < 150 && !execution.confirmed) return response('Hold for at least 150 ms to execute this action');
+      if (!primed && !candidate.directActivation && hold < 150 && !execution.confirmed) return response('Hold for at least 150 ms to execute this action');
       const tick = snapshot.tick;
       if (confirmationEpoch !== intentEpoch) return response('Execution cancelled');
       const requestId = snapshot.decision!.id;

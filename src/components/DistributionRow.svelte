@@ -20,6 +20,8 @@
     /** True when the user explicitly selected a card with Tab or the pointer. */
     explicit: boolean;
     primedId: string | null;
+    /** Leader that one Enter runs without being primed (a plain web search). */
+    directId?: string | null;
     holdId: string | null;
     confirmId: string | null;
     showNumbers: boolean;
@@ -44,6 +46,7 @@
     targetId,
     explicit,
     primedId,
+    directId = null,
     holdId,
     confirmId,
     showNumbers,
@@ -106,7 +109,7 @@
       role="option"
       id="{idPrefix}-card-{card.id}"
       aria-selected={targetId === card.id}
-      aria-label="{i.label}{i.result?.status === 'ready' ? `, ${i.result.given} = ${i.result.text}` : i.detail ? `, ${i.detail}` : ''}{primedId === card.id ? ', primed: Enter runs it' : ''}{i.needsConfirm ? ', needs confirmation' : ''}{i.error ? `, ${i.error}` : ''}"
+      aria-label="{i.label}{i.result?.status === 'ready' ? `, ${i.result.given} = ${i.result.text}` : i.detail ? `, ${i.detail}` : ''}{primedId === card.id ? ', primed: Enter runs it' : directId === card.id ? ', Enter searches the web' : ''}{i.needsConfirm ? ', needs confirmation' : ''}{i.error ? `, ${i.error}` : ''}"
       tabindex="-1"
       style="transform: translateX({card.x}px); width: {card.width}px; opacity: {card.opacity};"
       onpointerdown={(e) => onpress?.(card.id, e)}
@@ -136,6 +139,8 @@
           {#if targetId === card.id}<span class="cue">can’t run</span>{/if}
         {:else if primedId === card.id}
           <span class="cue primed-cue"><kbd>↵</kbd> runs</span>
+        {:else if directId === card.id}
+          <span class="cue direct-cue"><kbd>↵</kbd> search</span>
         {:else if targetId === card.id}
           <span class="cue">hold <kbd>↵</kbd></span>
         {/if}
@@ -291,6 +296,9 @@
   }
   .primed-cue {
     color: var(--accent);
+  }
+  .direct-cue {
+    color: var(--text);
   }
   .num {
     margin-left: auto;

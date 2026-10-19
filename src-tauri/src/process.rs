@@ -45,7 +45,8 @@ impl Runner for SystemRunner {
             });
             return Ok(Vec::new());
         }
-        let mut child = Command::new(&spec.program)
+        let mut command = Command::new(&spec.program);
+        command
             .args(&spec.args)
             .stdin(if spec.stdin.is_some() {
                 Stdio::piped()
@@ -53,7 +54,27 @@ impl Runner for SystemRunner {
                 Stdio::null()
             })
             .stdout(Stdio::piped())
-            .stderr(Stdio::null())
+            .stderr(Stdio::null());
+        #[cfg(target_os = "linux")]
+        {
+            use std::os::unix::process::CommandExt;
+            let parent = std::process::id() as libc::pid_t;
+            // SAFETY: the child uses only async-signal-safe libc calls before
+            // exec. It cannot inherit another command or a detached application.
+            unsafe {
+                command.pre_exec(move || {
+                    if libc::prctl(libc::PR_SET_PDEATHSIG, libc::SIGKILL) != 0 {
+                        return Err(std::io::Error::last_os_error());
+                    }
+                    // Close the race where the parent exited before prctl.
+                    if libc::getppid() != parent {
+                        libc::_exit(125);
+                    }
+                    Ok(())
+                });
+            }
+        }
+        let mut child = command
             .spawn()
             .map_err(|_| format!("{} unavailable", spec.program))?;
         let mut stdout = child.stdout.take().unwrap();

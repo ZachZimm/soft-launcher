@@ -3,6 +3,7 @@ import {
   HOLD_MS,
   INITIAL,
   appKey,
+  directLeader,
   enterDown,
   enterUp,
   escape,
@@ -300,5 +301,88 @@ describe('cards that cannot run', () => {
     expect(fx).toEqual([]);
     expect(s.hold).toBeNull();
     expect(s.hint).toMatch(/can’t run/);
+  });
+});
+
+describe('Enter on a direct leader (plain web search, not primed)', () => {
+  const direct = view({ directId: 'a' });
+
+  it('fires once with no hold and is not reported as primed', () => {
+    const [s, fx] = enterDown(INITIAL, direct, 0, false);
+    expect(fx).toEqual([{ type: 'execute', actionId: 'a', primed: false, holdMs: 0, confirmed: false }]);
+    expect(s.busy).toBe(true);
+    expect(s.hold).toBeNull();
+  });
+
+  it('ignores key repeat and presses while the first run is busy', () => {
+    const [s] = enterDown(INITIAL, direct, 0, false);
+    expect(enterDown(s, direct, 30, true)[1]).toEqual([]);
+    expect(exec(enterDown(enterUp(s, 40)[0], direct, 50, false)[1])).toEqual([]);
+  });
+
+  it('waits, without firing later, while the decision is not current', () => {
+    const [s, fx] = enterDown(INITIAL, view({ ready: false, directId: 'a' }), 0, false);
+    expect(fx).toEqual([]);
+    expect(s.hint).toMatch(/Waiting for the current decision/);
+    expect(holdElapsed(s, 'a', 500)[1]).toEqual([]);
+  });
+
+  it('only applies to the leader: other cards still need a hold', () => {
+    const v = view({ directId: 'b' });
+    expect(enterDown(INITIAL, v, 0, false)[1]).toEqual([{ type: 'scheduleHold', actionId: 'a', delayMs: HOLD_MS }]);
+    const [s] = tab(INITIAL, v, 1);
+    expect(s.selectedId).toBe('b');
+    expect(enterDown(s, v, 0, false)[1]).toEqual([{ type: 'scheduleHold', actionId: 'b', delayMs: HOLD_MS }]);
+  });
+
+  it('runs when the leader is selected explicitly', () => {
+    const [s] = tab(tab(tab(INITIAL, direct, 1)[0], direct, 1)[0], direct, 1);
+    expect(s.selectedId).toBe('a');
+    expect(exec(enterDown(s, direct, 0, false)[1])).toEqual([{ type: 'execute', actionId: 'a', primed: false, holdMs: 0, confirmed: false }]);
+  });
+
+  it('never outranks a matching app', () => {
+    const v = view({ directId: 'a', apps: ['firefox'] });
+    expect(enterDown(INITIAL, v, 0, false)[1]).toEqual([{ type: 'launchApp', appId: 'firefox' }]);
+  });
+
+  it('explains a blocked card instead of running it', () => {
+    const [s, fx] = enterDown(INITIAL, view({ directId: 'a', blocked: { a: 'Web search can’t run: empty query' } }), 0, false);
+    expect(fx).toEqual([]);
+    expect(s.hint).toBe('Web search can’t run: empty query');
+  });
+
+  it('still needs a hold from the pointer', () => {
+    const [s, fx] = pointerDown(INITIAL, direct, 'a', 0);
+    expect(fx).toEqual([{ type: 'scheduleHold', actionId: 'a', delayMs: HOLD_MS }]);
+    expect(exec(pointerUp(s, 40, 'a')[1])).toEqual([]);
+  });
+
+  it('a new input before the next decision leaves nothing to run', () => {
+    const [s] = inputChanged(INITIAL);
+    expect(enterDown(s, view({ ready: false, directId: null }), 0, false)[1]).toEqual([]);
+  });
+});
+
+describe('directLeader', () => {
+  const ok = { ready: true, leaderId: 'web_search', topId: 'web_search', primedId: null, directActivation: true, blocked: false, pending: false, guarded: false };
+
+  it('offers the current, valid, unguarded leader', () => {
+    expect(directLeader(ok)).toBe('web_search');
+  });
+
+  // Debouncing, deciding, warming, a primary timeout (stale) and closed all read as not ready.
+  it('offers nothing unless the decision is current', () => {
+    expect(directLeader({ ...ok, ready: false })).toBeNull();
+  });
+
+  it('offers nothing when any gate fails', () => {
+    expect(directLeader({ ...ok, directActivation: false })).toBeNull();
+    expect(directLeader({ ...ok, topId: 'other' })).toBeNull();
+    expect(directLeader({ ...ok, primedId: 'web_search' })).toBeNull();
+    expect(directLeader({ ...ok, blocked: true })).toBeNull();
+    expect(directLeader({ ...ok, pending: true })).toBeNull();
+    expect(directLeader({ ...ok, guarded: true })).toBeNull();
+    expect(directLeader({ ...ok, leaderId: null })).toBeNull();
   });
 });

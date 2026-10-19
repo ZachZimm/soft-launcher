@@ -16,12 +16,12 @@
     error: CoreError | null;
     errorCount: number;
     /** What Enter does to the current target. */
-    enterHint?: 'open' | 'run' | 'hold' | 'confirm' | 'none';
+    enterHint?: 'open' | 'run' | 'search' | 'hold' | 'confirm' | 'none';
     onsettings?: () => void;
     onclearerror?: () => void;
   }
   let { status, stale, hasCandidates, backendLabel, host, p50, p95, decisions, bridge, error, errorCount, enterHint = 'none', onsettings, onclearerror }: Props = $props();
-  const ENTER: Record<NonNullable<Props['enterHint']>, string> = { open: 'open', run: 'run', hold: 'hold to run', confirm: 'confirm', none: '' };
+  const ENTER: Record<NonNullable<Props['enterHint']>, string> = { open: 'open', run: 'run', search: 'search', hold: 'hold to run', confirm: 'confirm', none: '' };
 
   const state = $derived.by(() => {
     if (status === 'warming') return { text: 'warming model', cls: 'busy' };

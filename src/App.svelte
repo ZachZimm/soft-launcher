@@ -109,10 +109,38 @@
     ),
   );
 
-  const view = $derived<ix.View>({ ready, order: row.cards.map((c) => c.id), leaderId, primedId: ready ? primedId : null, apps: apps.map((c) => c.app.id), blocked });
+  /**
+   * A leader the core allows one explicit Enter without priming it: a valid web
+   * search for the current input. Its band and confidence stay as they are.
+   * Unlike the primed outline it is never carried over while typing or stale.
+   */
+  const directId = $derived.by(() => {
+    const c = leaderId ? byId.get(leaderId) : undefined;
+    return ix.directLeader({
+      ready,
+      leaderId,
+      topId,
+      primedId,
+      directActivation: c?.directActivation === true,
+      blocked: !c || !!problemOf(c),
+      pending: !!c?.argumentPending,
+      guarded: !!c && isGuarded(c.action),
+    });
+  });
+
+  /**
+   * Leader opacity encodes confidence, which makes a low-confidence card look
+   * disabled. A direct card does run on Enter, so keep it legible; its numbers
+   * and the missing primed outline still show the confidence honestly.
+   */
+  const DIRECT_MIN_OPACITY = 0.85;
+  const cards = $derived(row.cards.map((c) => (c.id === directId ? { ...c, opacity: Math.max(c.opacity, DIRECT_MIN_OPACITY) } : c)));
+
+  const view = $derived<ix.View>({ ready, order: row.cards.map((c) => c.id), leaderId, primedId: ready ? primedId : null, directId, apps: apps.map((c) => c.app.id), blocked });
   const targetId = $derived(ix.target(ui, view));
-  /** The primed cue is only true when Enter would run that card, not when an app card has Enter. */
+  /** The primed and direct cues are only true when Enter would run that card, not when an app card has Enter. */
   const shownPrimedId = $derived(primedId && targetId === primedId ? primedId : null);
+  const shownDirectId = $derived(directId && targetId === directId ? directId : null);
   const targetIsApp = $derived(ix.appIdOf(targetId) !== null);
 
   function confidenceOf(id: string): number {
@@ -681,7 +709,7 @@
         </span>
       {/if}
     </div>
-    <span id="launcher-help" class="visually-hidden">Matching apps come first; Enter opens the highlighted app. Tab and the arrow keys move between cards. Enter runs a primed action; hold Enter for other actions. Escape steps back.</span>
+    <span id="launcher-help" class="visually-hidden">Matching apps come first; Enter opens the highlighted app. Tab and the arrow keys move between cards. Enter runs a primed action or a plain web search; hold Enter for other actions. Escape steps back.</span>
 
     {#if apps.length > 0}
       <AppRow
@@ -698,11 +726,12 @@
 
     {#if actionRowShown}
     <DistributionRow
-      cards={row.cards}
+      {cards}
       {info}
       {targetId}
       explicit={!!ui.selectedId}
       primedId={shownPrimedId}
+      directId={shownDirectId}
       holdId={ui.hold?.actionId ?? null}
       confirmId={ui.confirm?.actionId ?? null}
       showNumbers={settings.showNumbers}
@@ -765,7 +794,7 @@
       bridge={env.model === 'demo' && !env.native ? null : snap.bridge}
       error={latestError}
       errorCount={strip.count}
-      enterHint={ui.confirm ? 'confirm' : targetIsApp ? 'open' : shownPrimedId ? 'run' : targetId && !blocked[targetId] ? 'hold' : 'none'}
+      enterHint={ui.confirm ? 'confirm' : targetIsApp ? 'open' : shownPrimedId ? 'run' : shownDirectId ? 'search' : targetId && !blocked[targetId] ? 'hold' : 'none'}
       onsettings={toggleSettings}
       onclearerror={() => (errorHiddenAt = snap.errors.at(-1)?.at ?? Date.now())}
     />

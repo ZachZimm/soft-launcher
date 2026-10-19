@@ -7,6 +7,8 @@
 //   one Enter press (or a click) opens the targeted app: no hold, no model
 //   readiness or confidence involved. It is a code match the user can see.
 // - Enter on the primed leader fires at once.
+// - Enter on a direct leader (a plain web search the core marked safe for one
+//   explicit Enter) also fires at once, but is never reported as primed.
 // - Enter on any other action card fires only after a deliberate 150 ms hold.
 // - Enter on a card whose arguments are invalid explains why and runs nothing.
 // - Actions that need confirmation fire a first request that returns a token;
@@ -33,10 +35,39 @@ export interface View {
   leaderId: string | null;
   /** The leader, if it is primed (model's top choice in the act band, no confirmation needed). */
   primedId: string | null;
+  /**
+   * The leader, if the core allows it one explicit Enter without being primed
+   * (a current, valid, unguarded web search). It says nothing about confidence.
+   */
+  directId?: string | null;
   /** Installed-app IDs in display order, shown before the action cards. */
   apps?: readonly string[];
   /** Action cards that cannot run, with the sentence to show instead. */
   blocked?: Readonly<Record<string, string>>;
+}
+
+/** What decides whether the leader gets one explicit Enter without being primed. */
+export interface DirectCheck {
+  /** The runtime has a current, nonstale decision (status ready). */
+  ready: boolean;
+  leaderId: string | null;
+  /** The model's top candidate; the shown leader can lag it under hysteresis. */
+  topId: string | null;
+  primedId: string | null;
+  /** The core's per-candidate flag for the leader, plus anything that stops it running. */
+  directActivation: boolean;
+  blocked: boolean;
+  pending: boolean;
+  guarded: boolean;
+}
+
+/**
+ * The direct leader, if any. Only a ready decision qualifies: while typing,
+ * deciding or showing a stale answer Enter would refuse, so the cue must not offer it.
+ */
+export function directLeader(c: DirectCheck): string | null {
+  const ok = c.ready && c.leaderId !== null && c.leaderId === c.topId && c.primedId === null && c.directActivation && !c.blocked && !c.pending && !c.guarded;
+  return ok ? c.leaderId : null;
 }
 
 /** Every selectable card in Tab order: apps first, then actions. */
@@ -118,6 +149,9 @@ function fire(s: InteractionState, v: View, now: number): Step {
   if (blocked) return [{ ...s, hold: null, hint: blocked }, []];
   if (t === v.primedId && t === v.leaderId) {
     return [{ ...s, busy: true, hold: null, hint: null }, [{ type: 'execute', actionId: t, primed: true, holdMs: 0, confirmed: false }]];
+  }
+  if (t === v.directId && t === v.leaderId) {
+    return [{ ...s, busy: true, hold: null, hint: null }, [{ type: 'execute', actionId: t, primed: false, holdMs: 0, confirmed: false }]];
   }
   return [{ ...s, hold: { actionId: t, startedAt: now, source: 'key' }, hint: null }, [{ type: 'scheduleHold', actionId: t, delayMs: HOLD_MS }]];
 }

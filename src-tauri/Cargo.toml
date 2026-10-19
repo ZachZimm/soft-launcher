@@ -38,6 +38,7 @@ tauri-plugin-single-instance = { version = "2", optional = true }
 # Layer-shell overlay (src/layer_shell.rs). Same gtk as Tauri's; the library itself
 # is opened at runtime, so building needs no gtk-layer-shell.
 [target.'cfg(target_os = "linux")'.dependencies]
+libc = "0.2"
 gtk = { version = "0.18", optional = true }
 libloading = { version = "0.7", optional = true }
 

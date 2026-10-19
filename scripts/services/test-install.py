@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Exercise installation in a temporary home; never call the real systemctl."""
 import hashlib
+import fcntl
 import json
 import os
 from pathlib import Path
@@ -16,6 +17,51 @@ BUNDLE = INSTALL.parents[2] / "src-tauri/target/release/lib"
 
 
 class InstallTest(unittest.TestCase):
+    def test_toggle_refuses_during_update_and_closes_lock_before_exec(self):
+        self.install()
+        runtime = self.home / '.local/lib/soft-launcher'
+        marker = self.home / 'synthetic-launched'
+        (runtime / 'soft-launcher').write_text('#!/usr/bin/env bash\nflock --exclusive --nonblock "$XDG_RUNTIME_DIR/soft-launcher-update.lock" /usr/bin/true || exit 17\ntouch "$HOME/synthetic-launched"\n')
+        (runtime / 'soft-launcher').chmod(0o755)
+        lock = Path(self.env['XDG_RUNTIME_DIR']) / 'soft-launcher-update.lock'
+        with lock.open('a') as guard:
+            fcntl.flock(guard, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            denied = subprocess.run([str(runtime / 'toggle')], env=self.env, timeout=3)
+            self.assertEqual(denied.returncode, 0)
+            self.assertFalse(marker.exists())
+        allowed = subprocess.run([str(runtime / 'toggle')], env=self.env, timeout=3)
+        self.assertEqual(allowed.returncode, 0)
+        self.assertTrue(marker.exists())
+
+    def test_staged_backend_environment_is_protected_and_rolled_back_on_failure(self):
+        self.install()
+        backend = self.home / '.config/local.system1.soft-launcher/backend.env'
+        source = Path(self.temp.name) / 'staged-backend.env'
+        source.write_text('SOFT_LAUNCHER_CODEX_BRIDGE=/opt/example/bridge.py\n')
+        source.chmod(0o600)
+        digest = hashlib.sha256(source.read_bytes()).hexdigest()
+        def update(success=True, sha=digest):
+            return self.command('update', '--no-start', '--skip-build', '--binary', str(self.binary), '--sha256', self.sha,
+                                '--backend-env', str(source), '--backend-env-sha256', sha, success=success)
+        update(success=False, sha='0' * 64)
+        self.assertFalse(backend.exists())
+        source.chmod(0o644)
+        update(success=False)
+        self.assertFalse(backend.exists())
+        source.chmod(0o600)
+        verifier = self.commands / 'systemd-analyze'
+        verifier.write_text('#!/bin/sh\nexit 1\n'); verifier.chmod(0o755)
+        update(success=False)
+        self.assertFalse(backend.exists())
+        backend.write_text('SOFT_LAUNCHER_CODEX_MODEL=previous\n'); backend.chmod(0o640)
+        update(success=False)
+        self.assertEqual(backend.read_text(), 'SOFT_LAUNCHER_CODEX_MODEL=previous\n')
+        self.assertEqual(backend.stat().st_mode & 0o777, 0o640)
+        verifier.unlink()
+        update()
+        self.assertEqual(backend.read_bytes(), source.read_bytes())
+        self.assertEqual(backend.stat().st_mode & 0o777, 0o600)
+
     def old_catalogue(self):
         source = "# Installed old defaults\n"
         for action in catalogue_migration.OLD.values():
@@ -44,6 +90,9 @@ class InstallTest(unittest.TestCase):
         self.assertEqual(manifest["hermesHandoffProtocol"], "desktop-file-socket-v1")
         unit = (self.home / ".config/systemd/user/soft-launcher.service").read_text()
         self.assertIn("backend.env", unit)
+        self.assertIn('KillMode=process\n', unit)
+        bridge_unit = (self.home / '.config/systemd/user/soft-if.service').read_text()
+        self.assertNotIn('KillMode=process', bridge_unit)
         self.assertNotIn("clef-flash.service", unit)
         self.command("rollback", "--no-start")
         self.assertEqual(catalogue.read_text(), original)
@@ -91,10 +140,14 @@ class InstallTest(unittest.TestCase):
 import json, os, sys
 with open(os.environ['SERVICE_TEST_CALLS'], 'a') as f:
     f.write(json.dumps(sys.argv[1:]) + '\\n')
+if '--property=KillMode' in sys.argv:
+    print(os.environ.get('SERVICE_TEST_KILL_MODE', 'process'))
 sys.exit(3 if 'is-active' in sys.argv else 0)
 ''')
         fake.chmod(0o755)
         self.env = dict(os.environ, HOME=str(self.home), XDG_CONFIG_HOME=str(self.home / ".config"), XDG_DATA_HOME=str(self.home / ".local/share"), PATH=str(self.commands) + ":/usr/bin:/bin", SOFT_LAUNCHER_NODE="/usr/bin/node", SERVICE_TEST_CALLS=str(self.calls))
+        private_runtime = self.home / 'runtime'; private_runtime.mkdir(mode=0o700)
+        self.env['XDG_RUNTIME_DIR'] = str(private_runtime)
         self.config = self.home / ".config/hypr/hyprland.lua"
         self.config.parent.mkdir(parents=True)
         self.original = 'hl.on("hyprland.start", function()\n\thl.exec_cmd("dms run")\nend)\n-- keep all user settings\n'

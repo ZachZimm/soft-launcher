@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Install the two user services without changing system-wide configuration."""
 import argparse
+import fcntl
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -29,6 +30,7 @@ DATABASE = DATA / "soft-launcher/soft-if.db"
 CATALOGUE = CONFIG / "local.system1.soft-launcher/catalogue.toml"
 MARKER = "# Managed by soft-launcher/scripts/service.sh"
 NAMES = ("soft-if.service", "soft-launcher.service")
+UPDATE_LOCK = Path(os.environ.get('XDG_RUNTIME_DIR', f'/run/user/{os.getuid()}')) / 'soft-launcher-update.lock'
 
 
 def run(*args, **kwargs):
@@ -84,14 +86,32 @@ def directory(value):
     return str(value).replace("%", "%%")
 
 
+def launcher_command():
+    return f'exec env -u LD_LIBRARY_PATH -u TAURI_WEBVIEW_AUTOMATION -u WEBKIT_INSPECTOR_SERVER {shlex.quote("SOFT_LAUNCHER_CATALOGUE=" + str(CATALOGUE))} {shlex.quote(str(RUNTIME / "soft-launcher"))}'
+
+
+def toggle_script():
+    return f'''#!/usr/bin/env bash
+{MARKER}
+umask 077
+exec 9>"${{XDG_RUNTIME_DIR:-/run/user/$UID}}/soft-launcher-update.lock"
+if ! flock --shared --nonblock 9; then exit 0; fi
+# Check only; native startup owns the atomic startup lock. Never hold a lock
+# for the running application's lifetime, including legacy cohorts.
+flock --unlock 9
+exec 9>&-
+{launcher_command()} --toggle
+'''
+
+
 def exact_text(path):
     with path.open("r", encoding="utf-8", newline="") as handle:
         return handle.read()
 
 
-def write(path, text, executable=False):
+def write(path, text, executable=False, mode=None):
     path.parent.mkdir(parents=True, exist_ok=True)
-    mode = 0o755 if executable else (path.stat().st_mode & 0o777 if path.exists() else 0o644)
+    mode = mode if mode is not None else 0o755 if executable else (path.stat().st_mode & 0o777 if path.exists() else 0o644)
     with tempfile.NamedTemporaryFile(mode="w", dir=path.parent, delete=False) as handle:
         handle.write(text)
         temp = Path(handle.name)
@@ -186,26 +206,92 @@ class RuntimeUpdate:
         self.published = False
         self.backup = None
         self.stage = None
+        self.guard = None
+        self.prepared = False
+        self.services_changed = False
+        self.changed_services = set()
         return self
+
+    def acquire_guard(self):
+        if self.guard is not None:
+            return
+        descriptor = os.open(UPDATE_LOCK, os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW | os.O_CLOEXEC, 0o600)
+        try:
+            fcntl.flock(descriptor, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            os.close(descriptor)
+            raise RuntimeError('Another launcher startup or update is in progress') from None
+        self.guard = descriptor
+
+    def require_safe_stop(self):
+        result = subprocess.run(['systemctl', '--user', 'show', 'soft-launcher.service', '--property=KillMode', '--value'], capture_output=True, text=True, check=True)
+        if result.stdout.strip() != 'process':
+            raise RuntimeError('Refusing launcher stop without effective KillMode=process')
+
+    def prepare(self):
+        if self.prepared:
+            return
+        self.acquire_guard()
+        self.active_before = {name: active(name) for name in NAMES}
+        self.files_before = {path: (exact_text(path), path.stat().st_mode & 0o777) if path.exists() else None
+                             for path in (BIN, CATALOGUE, CONFIG / 'local.system1.soft-launcher/backend.env', RUNTIME / 'toggle', *(UNITS / name for name in NAMES))}
+        for path, expected in getattr(self, 'expected_files', {}).items():
+            original = self.files_before[path]
+            actual = {'sha256': hashlib.sha256(original[0].encode()).hexdigest(), 'mode': oct(original[1])} if original else None
+            if actual != expected:
+                raise RuntimeError('Configuration changed before the publication transaction')
+        self.touched = True
+        if RUNTIME.exists():
+            write(RUNTIME / 'toggle', toggle_script(), executable=True)
+        # Load the safe launcher stop policy before stopping an old cohort that
+        # may already share its cgroup with user applications. Bridge unchanged.
+        write(UNITS / 'soft-launcher.service', launcher_unit())
+        ctl('daemon-reload')
+        self.require_safe_stop()
+        self.prepared = True
 
     def publish(self, stage):
         self.stage = stage
-        self.active_before = {name: active(name) for name in NAMES}
-        self.files_before = {path: (exact_text(path), path.stat().st_mode & 0o777) if path.exists() else None
-                             for path in (BIN, CATALOGUE, *(UNITS / name for name in NAMES))}
-        self.touched = True
+        self.prepare()
+        self.require_safe_stop()
+        self.note_service_change(*NAMES)
         for name in reversed(NAMES):
-            if self.active_before[name]:
+            if active(name):
                 ctl("stop", name)
         self.backup = publish_runtime(stage, RUNTIME)
         self.published = True
+        original_toggle = self.files_before[RUNTIME / 'toggle']
+        if self.backup and original_toggle is not None:
+            write(self.backup / 'toggle', original_toggle[0], mode=original_toggle[1])
+
+    def note_service_change(self, *names):
+        self.services_changed = True
+        self.changed_services.update(names)
+
+    def stage_backend_environment(self, text):
+        if text is not None:
+            if not self.prepared:
+                raise RuntimeError('Backend environment requires a captured update boundary')
+            write(CONFIG / 'local.system1.soft-launcher/backend.env', text, mode=0o600)
 
     def __exit__(self, kind, error, traceback):
+        try:
+            return self.finish(kind, error, traceback)
+        finally:
+            if self.guard is not None:
+                os.close(self.guard)
+                self.guard = None
+
+    def finish(self, kind, error, traceback):
         if kind and self.touched:
             try:
-                for name in reversed(NAMES):
-                    if active(name):
-                        ctl("stop", name)
+                if self.services_changed:
+                    # Stop under the safe policy, then restore old unit bytes.
+                    # Never restore control-group and subsequently stop it.
+                    self.require_safe_stop()
+                    for name in reversed(NAMES):
+                        if name in self.changed_services and active(name):
+                            ctl("stop", name)
                 if self.published:
                     failed = RUNTIME.with_name(RUNTIME.name + ".failed-" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ"))
                     RUNTIME.rename(failed)
@@ -219,7 +305,7 @@ class RuntimeUpdate:
                         path.chmod(original[1])
                 ctl("daemon-reload")
                 for name in NAMES:
-                    if self.active_before[name]:
+                    if name in self.changed_services and self.active_before[name]:
                         ctl("start", name)
             except BaseException as rollback_error:
                 raise RuntimeError(f"Installation failed ({error}); runtime rollback also failed ({rollback_error})") from error
@@ -248,6 +334,52 @@ def install_hook():
 def install(args):
     with RuntimeUpdate() as update:
         _install(args, update)
+
+
+def load_backend_environment(source, expected_sha):
+    if not source:
+        return None
+    source = Path(source)
+    if source.stat().st_mode & 0o777 != 0o600:
+        raise RuntimeError('Staged backend environment must have mode 0600')
+    data = source.read_bytes()
+    if hashlib.sha256(data).hexdigest() != expected_sha:
+        raise RuntimeError('Staged backend environment SHA256 mismatch')
+    if len(data) > 16384 or b'\0' in data:
+        raise RuntimeError('Invalid staged backend environment')
+    return data.decode('utf-8')
+
+
+def launcher_unit():
+    return f'''{MARKER}
+[Unit]
+Description=soft-launcher hidden Wayland keyboard launcher
+Wants=soft-if.service
+After=soft-if.service graphical-session-pre.target
+PartOf=graphical-session.target
+StartLimitIntervalSec=120
+StartLimitBurst=3
+
+[Service]
+Type=exec
+WorkingDirectory={directory(HOME)}
+Environment={unit_path("SOFT_LAUNCHER_CATALOGUE=" + str(CATALOGUE))}
+Environment={unit_path("SOFT_LAUNCHER_HERMES_ADAPTER=" + str(RUNTIME / "hermes-handoff.py"))}
+Environment={unit_path("SOFT_LAUNCHER_CODEX_MODEL=gpt-6.1-sol")}
+Environment={unit_path("SOFT_LAUNCHER_CLEF_URL=http://127.0.0.1:11434")}
+EnvironmentFile=-{directory(CONFIG / "local.system1.soft-launcher/backend.env")}
+UnsetEnvironment=LD_LIBRARY_PATH TAURI_WEBVIEW_AUTOMATION WEBKIT_INSPECTOR_SERVER
+ExecCondition={quote(RUNTIME / "graphical-ready")}
+ExecStart={quote(RUNTIME / "soft-launcher")} --hidden
+KillMode=process
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=10
+UMask=0077
+
+[Install]
+WantedBy=graphical-session.target
+'''
 
 
 def _install(args, update):
@@ -282,6 +414,7 @@ def _install(args, update):
     if args.hyprland_hook and not (CONFIG / "hypr/hyprland.lua").exists():
         raise RuntimeError("Hyprland Lua config missing")
     expected_sha = digest(binary)
+    backend_text = load_backend_environment(getattr(args, 'backend_env', None), getattr(args, 'backend_env_sha256', None))
     # Validate and stage the full binary/library cohort before stopping services.
     migration = None
     if CATALOGUE.exists():
@@ -290,6 +423,7 @@ def _install(args, update):
         if changed:
             migration = {"original": original, "migrated": migrated, "changed": changed}
     update.publish(stage_runtime(binary, sibling, expected_sha))
+    update.stage_backend_environment(backend_text)
     CATALOGUE.parent.mkdir(parents=True, exist_ok=True)
     if not CATALOGUE.exists():
         copy(REPO / "catalogue.toml", CATALOGUE)
@@ -305,9 +439,9 @@ def _install(args, update):
     DATABASE.parent.mkdir(parents=True, exist_ok=True)
     # Existing SQLite files, policy, catalogue, and their permissions survive updates.
     DATABASE.parent.chmod(0o700)
-    launch = f'exec env -u LD_LIBRARY_PATH -u TAURI_WEBVIEW_AUTOMATION -u WEBKIT_INSPECTOR_SERVER {shlex.quote("SOFT_LAUNCHER_CATALOGUE=" + str(CATALOGUE))} {shlex.quote(str(RUNTIME / "soft-launcher"))}'
+    launch = launcher_command()
     write(BIN, f'#!/usr/bin/env bash\n{MARKER}\n{launch} "$@"\n', executable=True)
-    write(RUNTIME / "toggle", f'#!/usr/bin/env bash\n{MARKER}\n{launch} --toggle\n', executable=True)
+    write(RUNTIME / "toggle", toggle_script(), executable=True)
     policy = REPO / "policy.json"
     bridge = f'''{MARKER}
 [Unit]
@@ -329,34 +463,7 @@ UMask=0077
 [Install]
 WantedBy=default.target
 '''
-    launcher = f'''{MARKER}
-[Unit]
-Description=soft-launcher hidden Wayland keyboard launcher
-Wants=soft-if.service
-After=soft-if.service graphical-session-pre.target
-PartOf=graphical-session.target
-StartLimitIntervalSec=120
-StartLimitBurst=3
-
-[Service]
-Type=exec
-WorkingDirectory={directory(HOME)}
-Environment={unit_path("SOFT_LAUNCHER_CATALOGUE=" + str(CATALOGUE))}
-Environment={unit_path("SOFT_LAUNCHER_HERMES_ADAPTER=" + str(RUNTIME / "hermes-handoff.py"))}
-Environment={unit_path("SOFT_LAUNCHER_CODEX_MODEL=gpt-6.1-sol")}
-Environment={unit_path("SOFT_LAUNCHER_CLEF_URL=http://127.0.0.1:11434")}
-EnvironmentFile=-{directory(CONFIG / "local.system1.soft-launcher/backend.env")}
-UnsetEnvironment=LD_LIBRARY_PATH TAURI_WEBVIEW_AUTOMATION WEBKIT_INSPECTOR_SERVER
-ExecCondition={quote(RUNTIME / "graphical-ready")}
-ExecStart={quote(RUNTIME / "soft-launcher")} --hidden
-Restart=on-failure
-RestartSec=10
-TimeoutStopSec=10
-UMask=0077
-
-[Install]
-WantedBy=graphical-session.target
-'''
+    launcher = launcher_unit()
     UNITS.mkdir(parents=True, exist_ok=True)
     write(UNITS / NAMES[0], bridge)
     write(UNITS / NAMES[1], launcher)
@@ -472,6 +579,8 @@ def main():
     parser.add_argument("--skip-build", action="store_true")
     parser.add_argument("--binary")
     parser.add_argument("--sha256")
+    parser.add_argument("--backend-env", help="reviewed native environment file, installed transactionally")
+    parser.add_argument("--backend-env-sha256", help="exact SHA256 of the mode-0600 staged environment")
     parser.add_argument("--no-start", action="store_true")
     parser.add_argument("--hyprland-hook", action="store_true", help="back up and add only the Hyprland Lua startup line")
     args = parser.parse_args()

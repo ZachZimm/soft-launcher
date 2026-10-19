@@ -49,7 +49,9 @@ Each native action needs its relevant tool. The catalogue uses `xdg-open`, `wl-c
 
 ## Interaction and local data
 
-Type an installed app's name or prefix, choose a card with Tab or the arrow keys, then press Enter. App matches use installed names, desktop IDs, generic names and keywords. Other actions use Enter on a primed leader or a 150 ms deliberate hold. Guarded actions require a separate second confirmation. Input or selection changes cancel that confirmation. Escape closes the current interaction, then hides the launcher. Ctrl+comma opens settings; Ctrl+R retries readiness.
+Type an installed app's name or prefix, choose a card with Tab or the arrow keys, then press Enter. App matches use installed names, desktop IDs, generic names and keywords. A current, valid leading web-search suggestion also runs with one Enter, even at low model confidence; its card shows “Enter search.” This is an explicit choice, not automatic execution or a higher confidence rating. Other actions use Enter on a primed leader or a 150 ms deliberate hold. Guarded actions require a separate second confirmation. Input or selection changes cancel that confirmation. Escape closes the current interaction, then hides the launcher. Ctrl+comma opens settings; Ctrl+R retries readiness.
+
+Low confidence and stale results are different: low confidence means the model is uncertain, while stale results are not usable for the current input. A failed primary decision still blocks execution. File ranking runs when a file action leads or when you deliberately select one; it does not delay an unrelated web-search suggestion.
 
 Bare website addresses use HTTPS. Calculation and conversion show read-only previews. Wrong-action feedback records a misfire but cannot undo external actions. Teaching proposes one catalogue entry and saves it only after explicit review.
 

@@ -50,6 +50,13 @@ included. Only the leading candidate can get an act band, using soft-if's explic
 answer confidence. Probability is the per-action mass for frontend sizing.
 Other candidates require at least 150 ms deliberate hold. UI owns measuring that
 hold, layout, selection, hysteresis and keyboard behavior.
+`directActivation: true` allows one explicit Enter or click on a current web-search
+leader even below the act confidence threshold. It requires both the model choice
+and probability leader to be `web_search`, the canonical `builtin/web_search/input`
+executor, nonblank valid arguments, no confirmation guard and no gibberish brake.
+The UI sends `primed: false`; this capability changes neither confidence nor band.
+Pending, stale and superseded decisions remain blocked. Other actions retain their
+hold and native confirmation requirements. A result never executes by arrival.
 File candidates can expose `fileConfidence` and `argumentPending`. A selected
 file action with unresolved alternatives gets a second semantic Choice before
 execution, including when the user deliberately chooses a nonleading action.
@@ -113,7 +120,10 @@ startup waits for this retry rather than sending another load on each keystroke.
 An active-decision failure can recover on the next input. `RuntimeOptions` accepts
 `timeoutMs` and `warmupTimeoutMs` overrides for tests or deployments. Latency targets
 are unchanged; the longer deadlines describe failure bounds, not achieved speed. File actions use a
-second Choice over at most five code-generated fuzzy candidates.
+second Choice over at most five code-generated fuzzy candidates. Eager reranking
+runs only for a leading file action, using that action's recent or candidate list.
+Nonleading file actions rerank on explicit execution. Auxiliary file-search signals
+do not start speculative reranking or invalidate an otherwise usable decision.
 
 ## Execution and teaching
 

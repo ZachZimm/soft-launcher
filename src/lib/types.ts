@@ -56,6 +56,8 @@ export type LauncherDecision = Decision<LauncherQuestions> & {
 };
 export interface Candidate {
   action: Action; probability: number; confidence: number; band: Band;
+  /** Explicit activation of the current web leader; independent of confidence and priming. */
+  directActivation?: boolean;
   args: ExecArgs; argumentError?: string; argumentPending?: boolean; fileConfidence?: number;
   preview?: { status: 'pending' | 'ready' | 'error'; text?: string; error?: string };
 }

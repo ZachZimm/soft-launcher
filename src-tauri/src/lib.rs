@@ -8,6 +8,8 @@ pub mod exec;
 pub mod layer_shell;
 pub mod overlay;
 pub mod process;
+#[cfg(target_os = "linux")]
+pub mod startup;
 use catalogue::{Catalogue, Store};
 use collectors::{Collectors, Context};
 use confirmation::Confirmations;
